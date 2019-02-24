@@ -39,7 +39,7 @@ Navbar
 }
 
 #nav-bar ul li a:hover, .navbar-brand:hover {
-    color: #000000 !important; /* use important if you are overwriting the base style (bootstrap here)*/
+    color: #fa3232 !important; /* use important if you are overwriting the base style (bootstrap here)*/
 }
 
 .navbar {
@@ -292,16 +292,16 @@ About
     filter: grayscale(100%);
 }
 
-/*
+
 img{
     max-width: 100%;
     height: auto;
-    /*width: 100%\9;  ie8 
+    width: 100%\9;  /*ie8 */
     display:block;
       margin-left: auto;
       margin-right: auto;
   }
-*/
+
 
 /* ---------------------------------------------------------
 error 404
