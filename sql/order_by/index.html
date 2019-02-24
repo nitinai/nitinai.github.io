@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-        <title></title>
+        <title>
+    Order by | Nitin Patil
+</title>
     
         <link rel="icon" type="image/x-icon" href="http://nitinai.github.io/images/favicon.ico">
     
@@ -76,8 +78,115 @@
         
         <section id="page-content">
             
-                
-            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Order by</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-02-13T18:08:18&#43;05:30'>
+                                February 13, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Lowest gdp country
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="n">TOP</span> <span class="mi">1</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">world</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">gdp</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>area</th>
+      <th>population</th>
+      <th>gdp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>647500</td>
+      <td>31056997</td>
+      <td>700</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Highest gdp country
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="n">TOP</span> <span class="mi">1</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">world</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">gdp</span>
+<span class="k">DESC</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>area</th>
+      <th>population</th>
+      <th>gdp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>United States</td>
+      <td>North America</td>
+      <td>9631420</td>
+      <td>298444215</td>
+      <td>37800</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+        </div>
+    </div>
+</page_content>
+
         </section>
     
 

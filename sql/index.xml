@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nitin Patil</title>
-    <link>http://nitinai.github.io/</link>
-    <description>Recent content on Nitin Patil</description>
+    <title>SQL on Nitin Patil</title>
+    <link>http://nitinai.github.io/sql/</link>
+    <description>Recent content in SQL on Nitin Patil</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Feb 2019 18:10:00 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 25 Jan 2019 19:14:46 +0530</lastBuildDate>
     
-	<atom:link href="http://nitinai.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://nitinai.github.io/sql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -45,36 +45,6 @@
       
       <guid>http://nitinai.github.io/sql/create-table/</guid>
       <description>-- create table world  CREATE TABLE world ( -- column and datatype  country varchar(100), continent varchar(25), area int, population int, gdp int )-- Get all column names and their data types from table  SELECT COLUMN_NAME, DATA_TYPE from master.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N&amp;#39;world&amp;#39; -- Use &amp;#34;N&amp;#34; for handlling unicode string like varchar in ANSI(32bit) and nvarchar in unicode(64bit)   .dataframe tbody tr th:only-of-type { vertical-align: middle; } .</description>
-    </item>
-    
-    <item>
-      <title>Github cheatsheet</title>
-      <link>http://nitinai.github.io/git/github_cheatsheet/</link>
-      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://nitinai.github.io/git/github_cheatsheet/</guid>
-      <description>Github repository Create new github repository for your project by executing below command at folder location.
-git init Clone an existing git repository Cloning is a process of copying remote github repository to your local machine.
-git clone &amp;lt;repo_url&amp;gt; &amp;lt;where_to_clone&amp;gt; Viewing info about remote repo git remote -v Check status of repo You can check status of files, like tracked/untracked
-git status Ignore from commit Add entries of files in .</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>http://nitinai.github.io/about/me/</link>
-      <pubDate>Tue, 01 Jan 2019 11:53:49 -0700</pubDate>
-      
-      <guid>http://nitinai.github.io/about/me/</guid>
-      <description>I am a software engineer with 12 years of experience. I am interested in machine learning and working upon my ML skills. This site contains notes prepared as part of my study.</description>
-    </item>
-    
-    <item>
-      <title>Projects</title>
-      <link>http://nitinai.github.io/projects/projects/</link>
-      <pubDate>Tue, 01 Jan 2019 11:53:49 -0700</pubDate>
-      
-      <guid>http://nitinai.github.io/projects/projects/</guid>
-      <description>In progress</description>
     </item>
     
   </channel>

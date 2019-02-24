@@ -3,66 +3,73 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://nitinai.github.io/posts/git/basic_commands/</loc>
+    <loc>http://nitinai.github.io/sql/union/</loc>
+    <lastmod>2019-02-13T18:10:00+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nitinai.github.io/sql/order_by/</loc>
+    <lastmod>2019-02-13T18:08:18+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nitinai.github.io/sql/select/</loc>
+    <lastmod>2019-02-13T18:05:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nitinai.github.io/sql/create-table/</loc>
+    <lastmod>2019-02-12T19:44:49+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nitinai.github.io/git/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nitinai.github.io/sql/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nitinai.github.io/about/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nitinai.github.io/projects/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nitinai.github.io/git/github_cheatsheet/</loc>
     <lastmod>2019-01-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/about/</loc>
+    <loc>http://nitinai.github.io/about/me/</loc>
+    <lastmod>2019-01-01T11:53:49-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/categories/</loc>
+    <loc>http://nitinai.github.io/projects/projects/</loc>
+    <lastmod>2019-01-01T11:53:49-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nitinai.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/contact/</loc>
-  </url>
-  
-  <url>
-    <loc>https://nitinai.github.io/tags/development/</loc>
-    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
+    <loc>http://nitinai.github.io/</loc>
+    <lastmod>2019-02-13T18:10:00+05:30</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/categories/development/</loc>
-    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://nitinai.github.io/tags/git/</loc>
-    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://nitinai.github.io/categories/git/</loc>
-    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://nitinai.github.io/</loc>
-    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://nitinai.github.io/posts/</loc>
-    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://nitinai.github.io/projects/</loc>
-  </url>
-  
-  <url>
-    <loc>https://nitinai.github.io/tags/</loc>
-    <lastmod>2019-01-08T00:00:00+00:00</lastmod>
+    <loc>http://nitinai.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   

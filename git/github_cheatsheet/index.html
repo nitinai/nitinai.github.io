@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    Github cheatsheet | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="http://nitinai.github.io/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+        
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+            MathML: {
+            extensions: ["content-mathml.js"]
+            }
+            });
+        </script>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+            MathML: {
+            extensions: ["mml3.js"]
+            }
+            });
+        </script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+        
+        <link rel="stylesheet" href="http://nitinai.github.io/css/custom.css">
+        <link rel="stylesheet" href="http://nitinai.github.io/css/syntax.css">
+    
+        
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="http://nitinai.github.io/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://nitinai.github.io//projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://nitinai.github.io//about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Github cheatsheet</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-01-08T00:00:00Z'>
+                                January 8, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<h3 id="github-repository">Github repository</h3>
+
+<p>Create new github repository for your project by executing below command at folder location.</p>
+<div class="highlight"><pre class="chroma">git init</pre></div>
+<h3 id="clone-an-existing-git-repository">Clone an existing git repository</h3>
+
+<p>Cloning is a process of copying remote github repository to your local machine.</p>
+<div class="highlight"><pre class="chroma">git clone &lt;repo_url&gt; &lt;where_to_clone&gt;</pre></div>
+<h3 id="viewing-info-about-remote-repo">Viewing info about remote repo</h3>
+<div class="highlight"><pre class="chroma">git remote -v</pre></div>
+<h3 id="check-status-of-repo">Check status of repo</h3>
+
+<p>You can check status of files, like tracked/untracked</p>
+<div class="highlight"><pre class="chroma">git status</pre></div>
+<h3 id="ignore-from-commit">Ignore from commit</h3>
+
+<p>Add entries of files in .gitignore you want to exclude from commit</p>
+
+<p>Create a file</p>
+<div class="highlight"><pre class="chroma">touch .gitignore</pre></div>
+<p>Mention whatever you want to exclude from git commit in a file</p>
+<div class="highlight"><pre class="chroma">.data
+.project
+*.pyc
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*</pre></div>
+<h3 id="history">History</h3>
+
+<p>Get list of changes made in repository</p>
+<div class="highlight"><pre class="chroma">git log</pre></div>
+<p>Log shows hash code, author, date of commit</p>
+
+<h3 id="view-unstagged-changes-to-files">View unstagged changes to files</h3>
+<div class="highlight"><pre class="chroma">git diff</pre></div>
+<h3 id="add-files-to-staging-area">Add files to staging area</h3>
+
+<p>To add all files</p>
+<div class="highlight"><pre class="chroma">git add -A </pre></div>
+<p>To add individual file</p>
+<div class="highlight"><pre class="chroma">git add &lt;filename&gt;</pre></div>
+<p>To add folder</p>
+<div class="highlight"><pre class="chroma">git add foldername\</pre></div>
+<h3 id="checkout-master-branch">Checkout master branch</h3>
+
+<p>Make sure you are on the lastest commit in the master brach before you continue.</p>
+<div class="highlight"><pre class="chroma">git checkout master</pre></div>
+<h3 id="discarding-local-changes-before-staging">Discarding local changes (before staging)</h3>
+
+<p>To discard file&rsquo;s local changes from working directory. <code>checkout</code> command checkout the repository&rsquo;s version of file.</p>
+<div class="highlight"><pre class="chroma">git checkout &lt;filename&gt;</pre></div>
+<h3 id="cancel-staged-changes-before-commit">Cancel staged changes (before commit)</h3>
+
+<p>To cancel all staged changes</p>
+<div class="highlight"><pre class="chroma">git reset</pre></div>
+<p>To cancel individual file changes</p>
+<div class="highlight"><pre class="chroma">git reset &lt;filename&gt;</pre></div>
+<p>The reset command (default) does not change the working directory. We can use the checkout command to remove unwanted changes from working directory.</p>
+
+<h3 id="commit-changes">Commit changes</h3>
+<div class="highlight"><pre class="chroma">git commit -m &#34;modification history&#34;</pre></div>
+<h3 id="update-local-repo-with-a-branch-from-github-repo">Update local repo with a branch from github repo</h3>
+<div class="highlight"><pre class="chroma">git pull origin master</pre></div>
+<h3 id="push-to-remote-repo">Push to remote repo</h3>
+<div class="highlight"><pre class="chroma">git push origin master</pre></div>
+<ul>
+<li><code>origin</code> - is the name of remote repo</li>
+<li><code>master</code> - branch to which we want to push
+<br />
+<br /></li>
+</ul>
+
+<h3 id="create-a-branch-for-desired-feature">Create a branch for desired feature</h3>
+<div class="highlight"><pre class="chroma">git branch &lt;branch_name&gt;</pre></div>
+<h3 id="switch-to-the-new-branch">Switch to the new branch</h3>
+<div class="highlight"><pre class="chroma">git checkout &lt;branch_name&gt;</pre></div>
+<h3 id="to-see-list-of-all-branches">To see list of all branches</h3>
+<div class="highlight"><pre class="chroma">git branch -a</pre></div>
+<h3 id="set-a-remote-github-repository">Set a remote github repository</h3>
+
+<p>Create a new repository on gitHub.com and set that repository&rsquo;s url as the origin repo</p>
+<div class="highlight"><pre class="chroma">git remote add origin &lt;repo_url&gt;</pre></div>
+<h3 id="push-branch-to-remote-repo">Push branch to remote repo</h3>
+<div class="highlight"><pre class="chroma">git push -u origin &lt;branch_name&gt;</pre></div>
+<ul>
+<li><code>-u</code>  associate the new branch to the remote repo, so that next time we can ommit <code>origin</code> and <code>branch_name</code> and just do git pull/push from this branch
+
+<br /></li>
+</ul>
+
+<h3 id="merge-master-with-branch">Merge master with branch</h3>
+<div class="highlight"><pre class="chroma">git checkout &lt;new_branch_name&gt;
+git merge master</pre></div>
+<h3 id="merge-branch-with-master">Merge branch with master</h3>
+
+<p>After making changes to our branch we can merge it to master.</p>
+<div class="highlight"><pre class="chroma">git checkout master
+git merge &lt;new_branch_name&gt;</pre></div>
+<h3 id="see-what-branches-are-merged">See what branches are merged</h3>
+<div class="highlight"><pre class="chroma">git branch --merged</pre></div>
+<h3 id="deleting-the-branch">Deleting the branch</h3>
+<div class="highlight"><pre class="chroma">git branch -d &lt;new_branch_name&gt;
+git push origin --delete &lt;new_branch_name&gt;</pre></div>
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>
