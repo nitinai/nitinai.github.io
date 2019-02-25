@@ -39,7 +39,7 @@ Navbar
 }
 
 #nav-bar ul li a:hover, .navbar-brand:hover {
-    color: #fa3232 !important; /* use important if you are overwriting the base style (bootstrap here)*/
+    color: #011e49  !important; /* use important if you are overwriting the base style (bootstrap here)*/
 }
 
 .navbar {

@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SQL on Nitin Patil</title>
-    <link>http://nitinai.github.io/sql/</link>
+    <link>https://nitinai.github.io/sql/</link>
     <description>Recent content in SQL on Nitin Patil</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 25 Jan 2019 19:14:46 +0530</lastBuildDate>
     
-	<atom:link href="http://nitinai.github.io/sql/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://nitinai.github.io/sql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Union</title>
-      <link>http://nitinai.github.io/sql/union/</link>
+      <link>https://nitinai.github.io/sql/union/</link>
       <pubDate>Wed, 13 Feb 2019 18:10:00 +0530</pubDate>
       
-      <guid>http://nitinai.github.io/sql/union/</guid>
+      <guid>https://nitinai.github.io/sql/union/</guid>
       <description>-- Get the lowest and highest gdp country in single query -- UNION operator is used to combine the result-set of two or more SELECT statements. SELECT * FROM (select top(1) * from world order by gdp desc) a UNION SELECT * FROM (select top(1) * from world order by gdp asc) b  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .</description>
     </item>
     
     <item>
       <title>Order by</title>
-      <link>http://nitinai.github.io/sql/order_by/</link>
+      <link>https://nitinai.github.io/sql/order_by/</link>
       <pubDate>Wed, 13 Feb 2019 18:08:18 +0530</pubDate>
       
-      <guid>http://nitinai.github.io/sql/order_by/</guid>
+      <guid>https://nitinai.github.io/sql/order_by/</guid>
       <description>-- Lowest gdp country SELECT TOP 1 * FROM world ORDER BY gdp  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }    country continent area population gdp     0 Afghanistan Asia 647500 31056997 700     -- Highest gdp country SELECT TOP 1 * FROM world ORDER BY gdp DESC  .</description>
     </item>
     
     <item>
       <title>Select</title>
-      <link>http://nitinai.github.io/sql/select/</link>
+      <link>https://nitinai.github.io/sql/select/</link>
       <pubDate>Wed, 13 Feb 2019 18:05:20 +0530</pubDate>
       
-      <guid>http://nitinai.github.io/sql/select/</guid>
+      <guid>https://nitinai.github.io/sql/select/</guid>
       <description>SELECT * FROM world  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }    country continent area population gdp     0 Afghanistan Asia 647500 31056997 700   1 India Asia 3287590 1095351995 2900   2 China Asia 9596960 1313973713 5000   3 United States North America 9631420 298444215 37800   4 Brazil South America 8511965 188078227 7600   5 South Africa Africa 1219912 44187637 10700   6 France Europe 547030 60876136 27600     Select Where -- get all Asian countries SELECT * from world where continent = &amp;#39;Asia&amp;#39;  .</description>
     </item>
     
     <item>
       <title>Create table</title>
-      <link>http://nitinai.github.io/sql/create-table/</link>
+      <link>https://nitinai.github.io/sql/create-table/</link>
       <pubDate>Tue, 12 Feb 2019 19:44:49 +0530</pubDate>
       
-      <guid>http://nitinai.github.io/sql/create-table/</guid>
+      <guid>https://nitinai.github.io/sql/create-table/</guid>
       <description>-- create table world  CREATE TABLE world ( -- column and datatype  country varchar(100), continent varchar(25), area int, population int, gdp int )-- Get all column names and their data types from table  SELECT COLUMN_NAME, DATA_TYPE from master.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N&amp;#39;world&amp;#39; -- Use &amp;#34;N&amp;#34; for handlling unicode string like varchar in ANSI(32bit) and nvarchar in unicode(64bit)   .dataframe tbody tr th:only-of-type { vertical-align: middle; } .</description>
     </item>
     
