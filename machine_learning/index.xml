@@ -1,51 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nitin Patil</title>
-    <link>/</link>
-    <description>Recent content on Nitin Patil</description>
+    <title>Machine Learning on Nitin Patil</title>
+    <link>/machine_learning/</link>
+    <description>Recent content in Machine Learning on Nitin Patil</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Feb 2019 18:10:00 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 01 Jan 2019 19:14:46 +0530</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/machine_learning/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Union</title>
-      <link>/sql/union/</link>
-      <pubDate>Wed, 13 Feb 2019 18:10:00 +0530</pubDate>
-      
-      <guid>/sql/union/</guid>
-      <description>-- Get the lowest and highest gdp country in single query -- UNION operator is used to combine the result-set of two or more SELECT statements. SELECT * FROM (select top(1) * from world order by gdp desc) a UNION SELECT * FROM (select top(1) * from world order by gdp asc) b  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .</description>
-    </item>
-    
-    <item>
-      <title>Order by</title>
-      <link>/sql/order_by/</link>
-      <pubDate>Wed, 13 Feb 2019 18:08:18 +0530</pubDate>
-      
-      <guid>/sql/order_by/</guid>
-      <description>-- Lowest gdp country SELECT TOP 1 * FROM world ORDER BY gdp  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }    country continent area population gdp     0 Afghanistan Asia 647500 31056997 700     -- Highest gdp country SELECT TOP 1 * FROM world ORDER BY gdp DESC  .</description>
-    </item>
-    
-    <item>
-      <title>Select</title>
-      <link>/sql/select/</link>
-      <pubDate>Wed, 13 Feb 2019 18:05:20 +0530</pubDate>
-      
-      <guid>/sql/select/</guid>
-      <description>SELECT * FROM world  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }    country continent area population gdp     0 Afghanistan Asia 647500 31056997 700   1 India Asia 3287590 1095351995 2900   2 China Asia 9596960 1313973713 5000   3 United States North America 9631420 298444215 37800   4 Brazil South America 8511965 188078227 7600   5 South Africa Africa 1219912 44187637 10700   6 France Europe 547030 60876136 27600     Select Where -- get all Asian countries SELECT * from world where continent = &amp;#39;Asia&amp;#39;  .</description>
-    </item>
-    
-    <item>
-      <title>Create table</title>
-      <link>/sql/create-table/</link>
-      <pubDate>Tue, 12 Feb 2019 19:44:49 +0530</pubDate>
-      
-      <guid>/sql/create-table/</guid>
-      <description>-- create table world  CREATE TABLE world ( -- column and datatype  country varchar(100), continent varchar(25), area int, population int, gdp int )-- Get all column names and their data types from table  SELECT COLUMN_NAME, DATA_TYPE from master.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N&amp;#39;world&amp;#39; -- Use &amp;#34;N&amp;#34; for handlling unicode string like varchar in ANSI(32bit) and nvarchar in unicode(64bit)   .dataframe tbody tr th:only-of-type { vertical-align: middle; } .</description>
-    </item>
     
     <item>
       <title>Decision tree algorithm</title>
@@ -106,36 +70,6 @@ Install Run the following command in your command line:</description>
       <guid>/machine_learning/visualize_decision_tree/</guid>
       <description>import os # On Windows you need to set your path to graphviz (C:\\Program Files (x86)\\Graphviz2.38\\bin\\ for example)  path_to_graphviz = &amp;#39;C:\\Program Files (x86)\\Graphviz2.38\\bin\\&amp;#39; os.environ[&amp;#34;PATH&amp;#34;] += os.pathsep + path_to_graphviz Train a classifier on iris dataset
 from sklearn.datasets import load_iris from sklearn import tree iris = load_iris() clf = tree.DecisionTreeClassifier(max_depth=3) clf = clf.fit(iris.data, iris.target)import graphviz # Calling `export_graphviz` with `out_file=None` returns GraphViz representation (DOT format) of the decision tree as string.</description>
-    </item>
-    
-    <item>
-      <title>Github cheatsheet</title>
-      <link>/git/github_cheatsheet/</link>
-      <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/git/github_cheatsheet/</guid>
-      <description>Github repository Create new github repository for your project by executing below command at folder location.
-git init Clone an existing git repository Cloning is a process of copying remote github repository to your local machine.
-git clone &amp;lt;repo_url&amp;gt; &amp;lt;where_to_clone&amp;gt; Viewing info about remote repo git remote -v Check status of repo You can check status of files, like tracked/untracked
-git status Ignore from commit Add entries of files you want to exclude from commit in special file named .</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>/about/me/</link>
-      <pubDate>Tue, 01 Jan 2019 11:53:49 -0700</pubDate>
-      
-      <guid>/about/me/</guid>
-      <description>I am a software engineer with 12 years of experience. I am interested in machine learning and working upon my ML skills. This site contains notes prepared as part of my study.</description>
-    </item>
-    
-    <item>
-      <title>Projects</title>
-      <link>/projects/projects/</link>
-      <pubDate>Tue, 01 Jan 2019 11:53:49 -0700</pubDate>
-      
-      <guid>/projects/projects/</guid>
-      <description>In progress</description>
     </item>
     
   </channel>

@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on Nitin Patil</title>
-    <link>https://nitinai.github.io/git/</link>
+    <link>/git/</link>
     <description>Recent content in Git on Nitin Patil</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 25 Jan 2019 19:14:46 +0530</lastBuildDate>
     
-	<atom:link href="https://nitinai.github.io/git/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Github cheatsheet</title>
-      <link>https://nitinai.github.io/git/github_cheatsheet/</link>
+      <link>/git/github_cheatsheet/</link>
       <pubDate>Tue, 08 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://nitinai.github.io/git/github_cheatsheet/</guid>
+      <guid>/git/github_cheatsheet/</guid>
       <description>Github repository Create new github repository for your project by executing below command at folder location.
 git init Clone an existing git repository Cloning is a process of copying remote github repository to your local machine.
 git clone &amp;lt;repo_url&amp;gt; &amp;lt;where_to_clone&amp;gt; Viewing info about remote repo git remote -v Check status of repo You can check status of files, like tracked/untracked
-git status Ignore from commit Add entries of files in .</description>
+git status Ignore from commit Add entries of files you want to exclude from commit in special file named .</description>
     </item>
     
   </channel>

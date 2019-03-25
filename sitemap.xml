@@ -3,73 +3,108 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://nitinai.github.io/sql/union/</loc>
+    <loc>/sql/union/</loc>
     <lastmod>2019-02-13T18:10:00+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/sql/order_by/</loc>
+    <loc>/sql/order_by/</loc>
     <lastmod>2019-02-13T18:08:18+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/sql/select/</loc>
+    <loc>/sql/select/</loc>
     <lastmod>2019-02-13T18:05:20+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/sql/create-table/</loc>
+    <loc>/sql/create-table/</loc>
     <lastmod>2019-02-12T19:44:49+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/git/</loc>
+    <loc>/machine_learning/decision_tree_algorithm/</loc>
     <lastmod>2019-01-25T19:14:46+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/sql/</loc>
+    <loc>/machine_learning/ensemble_random_forest/</loc>
     <lastmod>2019-01-25T19:14:46+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/about/</loc>
+    <loc>/machine_learning/feature-selection/</loc>
     <lastmod>2019-01-25T19:14:46+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/projects/</loc>
+    <loc>/git/</loc>
     <lastmod>2019-01-25T19:14:46+05:30</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/git/github_cheatsheet/</loc>
+    <loc>/machine_learning/gradient_boosting_machines/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sql/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/machine_learning/unit_testing/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/machine_learning/visualize_decision_tree/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/projects/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/git/github_cheatsheet/</loc>
     <lastmod>2019-01-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/about/me/</loc>
+    <loc>/about/me/</loc>
     <lastmod>2019-01-01T11:53:49-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/projects/projects/</loc>
+    <loc>/projects/projects/</loc>
     <lastmod>2019-01-01T11:53:49-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/categories/</loc>
+    <loc>/machine_learning/</loc>
+    <lastmod>2019-01-01T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/</loc>
+    <loc>/</loc>
     <lastmod>2019-02-13T18:10:00+05:30</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://nitinai.github.io/tags/</loc>
+    <loc>/tags/</loc>
     <priority>0</priority>
   </url>
   

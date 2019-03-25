@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135109602-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135109602-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    Decision tree algorithm | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/syntax.css">
+
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              TeX: { extensions: ["autobold.js"]
+                    },
+              MathML: {
+                    extensions: ["mml3.js", "content-mathml.js"]
+                    },
+              tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] }
+            });
+        </script>
+
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="//projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="//about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Decision tree algorithm</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-01-25T19:14:46&#43;05:30'>
+                                January 25, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<p>Here we will implement the Decision Tree algorithm and compare our algorithm&rsquo;s performance with decision trees from <code>sklearn.tree</code>. Purpose of this excercise is to
+write minimal implementation to understand how theory becomes code, avoiding layers of abstraction.</p>
+
+<p>Decision Trees are a non-parametric supervised learning method used for classification and regression. The goal of decision tree is to learn simple decision rules from training data and use those rules to predict target value for test data.</p>
+
+<h2 id="mathematical-formulation">Mathematical formulation</h2>
+
+<p>Given training data  $X$ , of shape $[N$ x $D]$ and a label vector $y$ of shape $[N$ x $K]$, (where $N$ is number of samples, $D$ is number of features, $K$ is number of labels) a decision tree recursively partitions the space such that the samples with the same labels are grouped together.</p>
+
+<p>Let the data at $m$ node represented by $X$. For each candidate split $\theta = (j, t_m)$ consisting of a feature $j$ and threshold $t_m$, partition the data into $X_l$ and $X_r$ subsets</p>
+
+<p>$$ X_l(\theta) = {(X, y) | X_j &lt;= t_m } $$</p>
+
+<p>$$X_r(\theta) = X \setminus X_l(\theta)$$</p>
+
+<p>The impurity at $m$ node is computed using an impurity function $F(X)$, the choice of which depends on the task being solved (classification or regression)</p>
+
+<p>Select the parameters $\theta = (j, t_m)$ for an optimal partition at a given $m$ node that minimises the impurity at left and right nodes. This will be acheived by maximizing below function.</p>
+
+<p>$$ Q(X, j, t_m) = F(X) - \dfrac{|X_l|}{|X|} F(X_l) - \dfrac{|X_r|}{|X|} F(X_r) $$</p>
+
+<p>Recurse for subsets $X_l$ and $X_r$ until&hellip;</p>
+
+<ul>
+<li><code>max_depth</code> the maximum allowable depth of tree is reached,</li>
+<li>number of samples in a node are less than <code>min_samples_split</code> or equal to 1</li>
+</ul>
+
+<h3 id="classification-criteria">Classification criteria</h3>
+
+<p>If a target is a classification outcome taking on values $0,1,…,K-1$, for node $m$, representing a region $R_m$ with $N_m$ observations, let $p_i$ be the fraction of the samples of the $i$-th class in the dataset $X_m$.</p>
+
+<p>$$p_i = \dfrac{1}{N_m} \sum_{x_i \in R_m} I(y_i = k)$$</p>
+
+<p>Common measure of impurity are</p>
+
+<ul>
+<li>Gini</li>
+</ul>
+
+<p>$$F(X_m) = 1 -\sum_{i = 1}^K p_i^2$$</p>
+
+<ul>
+<li>Entropy</li>
+</ul>
+
+<p>$$F(X_m) = -\sum_{i = 1}^K p_i \log_2(p_i)$$</p>
+
+<h3 id="regression-criteria">Regression criteria</h3>
+
+<p>If the target is a continuous value, then for node $m$, representing a region $R_m$ with $N_m$ observations, common criteria to minimise as for determining locations for future splits are Mean Squared Error, which minimizes the L2 error using mean values at terminal nodes, and Mean Absolute Error, which minimizes the L1 error using median values at terminal nodes.</p>
+
+<p>$$ \hat{y} = \dfrac{1}{N_m}\sum_{x_i \in X}y_i$$</p>
+
+<ul>
+<li>Mean Squared Error (variance)</li>
+</ul>
+
+<p>$$F(X_m) = \dfrac{1}{N_m} \sum_{x_j \in N_m}(y_j - \hat{y})^2$$</p>
+
+<ul>
+<li>Mean Absolute Error</li>
+</ul>
+
+<p>$$F(X_m) = \dfrac{1}{N_m} \sum_{x_j \in N_m}|(y_j - \hat{y})|$$</p>
+
+<ul>
+<li>mad_median - Mean deviation from the median</li>
+</ul>
+
+<script type="math/tex; mode=display">
+F(X_m) = \dfrac{1}{N_m} \sum_{x_j \in N_m} |y_j - \mathrm{med}(y)|
+</script>
+
+<h2 id="implementation">Implementation</h2>
+
+<p><strong>Specification:</strong></p>
+
+<ol>
+<li>Inherit our <code>DecisionTree</code> class from <code>sklearn.BaseEstimator</code></li>
+
+<li><p>class constructor parameters:</p>
+
+<p><code>max_depth</code> - maximum allowable depth of the tree (<code>numpy.inf</code> by default)</p>
+
+<p><code>min_samples_split</code> - the minimum number of samples in a node for splitting to be done (2 by default)</p>
+
+<p><code>criterion</code> - criterion to use for data split, <code>gini</code> by default)</p></li>
+</ol>
+
+<ul>
+<li>the class has several methods: <code>fit</code>, <code>predict</code> and <code>predict_proba</code>;</li>
+<li>the<code>fit</code> method takes the matrix of instances <code>X</code> and a target vector <code>y</code> (<code>numpy.ndarray</code> objects) and returns an instance of the class <code>DecisionTree</code> representing the decision tree trained on the dataset <code>(X, y)</code> according to parameters set in the constructor;</li>
+<li>the <code>predict_proba</code> method takes the matrix of instances <code>X</code> and returns the matrix <code>P</code> of a size <code>X.shape[0] x K</code>, where <code>K</code> is the number of classes and $p_{ij}$ is the probability of an instance in $i$-th row of <code>X</code> to belong to class $j \in {1, \dots, K}$.</li>
+<li>the <code>predict</code> method takes the matrix of instances <code>X</code> and returns a prediction vector; in case of classification, prediction for an instance $x_i$ falling into leaf $L$ will be the class, mostly represented among instances in $L$. In case of regression, it&rsquo;ll be the mean value of targets for all instances in leaf $L$.</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span><span class="p">,</span> <span class="n">make_regression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">mean_squared_error</span></code></pre></div>
+<p>Let&rsquo;s fix <code>random_state</code> (a.k.a. random seed) beforehand.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">17</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Classification criterion functions</span>
+<span class="k">def</span> <span class="nf">entropy</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>    
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="n">k</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">P</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">gini</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="n">k</span><span class="p">])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
+
+<span class="c1"># Regression criterion functions</span>
+<span class="k">def</span> <span class="nf">variance</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">mad_median</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+
+<span class="c1"># Dictionary for easy mapping with input string</span>
+<span class="n">criterion_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;entropy&#39;</span><span class="p">:</span> <span class="n">entropy</span><span class="p">,</span>
+                   <span class="s1">&#39;gini&#39;</span><span class="p">:</span> <span class="n">gini</span><span class="p">,</span>
+                   <span class="s1">&#39;mse&#39;</span><span class="p">:</span> <span class="n">variance</span><span class="p">,</span>
+                   <span class="s1">&#39;mad_median&#39;</span> <span class="p">:</span> <span class="n">mad_median</span><span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Target prediction functions</span>
+
+<span class="c1"># the most popular class in leaf</span>
+<span class="k">def</span> <span class="nf">classification_leaf</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+
+<span class="c1"># the mean of all values in a leaf</span>
+<span class="k">def</span> <span class="nf">regression_leaf</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span></code></pre></div>
+<p>The <code>Node</code> class represents a node in the decision tree.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Node</span><span class="p">():</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx</span> <span class="o">=</span> <span class="n">feature_idx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">DecisionTree</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+                 <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">max_depth</span><span class="p">,</span>
+                  <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="n">min_samples_split</span><span class="p">,</span>
+                  <span class="s1">&#39;debug&#39;</span> <span class="p">:</span> <span class="n">debug</span><span class="p">,</span>
+                  <span class="s1">&#39;criterion&#39;</span> <span class="p">:</span> <span class="n">criterion</span><span class="p">}</span>
+                
+        <span class="nb">super</span><span class="p">(</span><span class="n">DecisionTree</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_criterion_fun</span> <span class="o">=</span> <span class="n">criterion_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">criterion</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span> <span class="s1">&#39;mad_median&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_leaf_value</span> <span class="o">=</span> <span class="n">regression_leaf</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_leaf_value</span> <span class="o">=</span> <span class="n">classification_leaf</span>
+            
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&#34;DecisionTree&#34;</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;max_depth: {self.max_depth}, min_samples_split: {self.min_samples_split}, </span><span class="se">\
+</span><span class="se"></span><span class="s2">                  criterion: {self.criterion}, debug: {self.debug}&#34;</span><span class="p">)</span>
+        
+    
+    <span class="c1"># A functional returns the gain achieved if we split the data at given feature and threshold value</span>
+    <span class="c1">#</span>
+    <span class="k">def</span> <span class="nf">_functional</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">threshold</span> <span class="ow">is</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span><span class="n">feature_idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">threshold</span>
+        <span class="n">X_l</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span> <span class="n">mask</span> <span class="p">]</span>
+        <span class="n">y_l</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span> <span class="n">mask</span> <span class="p">]</span>
+
+        <span class="n">X_r</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span> <span class="o">~</span><span class="n">mask</span> <span class="p">]</span>
+        <span class="n">y_r</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span> <span class="o">~</span><span class="n">mask</span> <span class="p">]</span>
+        
+        <span class="c1"># if all the data goes to one of the child</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_l</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_r</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_criterion_fun</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> \
+                <span class="p">(</span><span class="n">X_l</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_criterion_fun</span><span class="p">(</span><span class="n">y_l</span><span class="p">)</span> <span class="o">-</span> \
+                <span class="p">(</span><span class="n">X_r</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_criterion_fun</span><span class="p">(</span><span class="n">y_r</span><span class="p">)</span>
+
+    
+    <span class="c1"># recursive function to split the data and form nodes</span>
+    <span class="c1"># </span>
+    <span class="k">def</span> <span class="nf">_build_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+        
+        <span class="c1"># We already reached to the max_depth, so time to leave recursion </span>
+        <span class="c1"># by creating a leaf Node</span>
+        <span class="k">if</span> <span class="n">depth</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+        
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+        
+        <span class="c1"># We do not have sufficient samples to split</span>
+        <span class="k">if</span> <span class="n">n_samples</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min_samples_split</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+        
+        <span class="c1"># If all objects in a current vertex have the same values in answers</span>
+        <span class="c1"># then the value of the functional will be 0 for all partitions.</span>
+        <span class="c1"># So in this case the vertex is a leaf. In order not to make unnecessary calculations, </span>
+        <span class="c1"># perform this check before the main cycle.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+        
+        <span class="c1"># Here we are trying to split the data such that we will have maximun</span>
+        <span class="c1"># gain out of split.</span>
+        <span class="c1"># We will simulate the split for each unique value of each feature and</span>
+        <span class="c1"># calculate the functional gain. On evey account of finding the maximum gain </span>
+        <span class="c1"># from the previous we will keep storing the feature index and threshold value</span>
+        <span class="c1"># which gave this gain.</span>
+        <span class="c1"># At the end of this search we will have the best feature index and threshold</span>
+        <span class="c1"># value we should use to split the data into left and right nodes.</span>
+        <span class="n">max_gain</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">best_feat_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">best_threshold</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">for</span> <span class="n">feature_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_features</span><span class="p">):</span>
+            <span class="n">all_thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="n">feature_idx</span><span class="p">])</span>
+            
+            <span class="n">all_gain</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_functional</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span> <span class="k">for</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="n">all_thresholds</span><span class="p">]</span>
+            
+            <span class="n">threshold_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanargmax</span><span class="p">(</span><span class="n">all_gain</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">all_gain</span><span class="p">[</span><span class="n">threshold_idx</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_gain</span><span class="p">:</span>
+                <span class="n">max_gain</span> <span class="o">=</span> <span class="n">all_gain</span><span class="p">[</span><span class="n">threshold_idx</span><span class="p">]</span>
+                <span class="n">best_feat_idx</span> <span class="o">=</span> <span class="n">feature_idx</span>
+                <span class="n">best_threshold</span> <span class="o">=</span> <span class="n">all_thresholds</span><span class="p">[</span><span class="n">threshold_idx</span><span class="p">]</span>
+
+        <span class="c1"># Split data at this best feature and threshold</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span><span class="n">best_feat_idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">best_threshold</span>
+        
+        <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">best_feat_idx</span><span class="p">,</span> <span class="n">best_threshold</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="c1"># We need to cache labels only at leaf node</span>
+                             <span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_tree</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># continue to build on left side</span>
+                             <span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_tree</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">],</span> <span class="n">depth</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># continue to build on right side</span>
+
+    
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="s1">&#39;&#39;&#39;the method takes the matrix of instances X and a target vector y (numpy.ndarray objects) 
+</span><span class="s1">        and returns an instance of the class DecisionTree representing the decision tree trained on the 
+</span><span class="s1">        dataset (X, y) according to parameters set in the constructor&#39;&#39;&#39;</span>
+        
+        <span class="c1"># remember the number classes for classification task</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> <span class="s1">&#39;entropy&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_tree</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+        
+
+    <span class="c1"># predict only for one object </span>
+    <span class="k">def</span> <span class="nf">_predict_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># Traverse from root to leaf node</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
+        
+        <span class="k">while</span> <span class="n">node</span><span class="o">.</span><span class="n">labels</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">feature_idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">threshold</span> <span class="k">else</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+        
+        <span class="c1"># calculate the prediction</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_leaf_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+            
+        
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="s1">&#39;&#39;&#39;the method takes the matrix of instances X and returns a prediction vector;
+</span><span class="s1">        in case of classification, prediction for an instance  xi  falling into leaf L will be the class,
+</span><span class="s1">        mostly represented among instances in  L . 
+</span><span class="s1">        In case of regression, it will be the mean value of targets for all instances in leaf  L&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_predict_object</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">])</span>
+        
+    
+    <span class="k">def</span> <span class="nf">_predict_prob_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
+        
+        <span class="k">while</span> <span class="n">node</span><span class="o">.</span><span class="n">labels</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">feature_idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">threshold</span> <span class="k">else</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+            
+        <span class="c1"># calculate the probability of each class</span>
+        <span class="c1"># i.e number of labels of class k / total number of labels</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span> <span class="n">node</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">labels</span> <span class="o">==</span> <span class="n">k</span><span class="p">]</span> <span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_classes</span><span class="p">)]</span>
+        
+    
+    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="s1">&#39;&#39;&#39;the method takes the matrix of instances X and returns the matrix P of a size [X.shape[0] x K],
+</span><span class="s1">        where K is the number of classes and  Pij  is the probability of an instance in  i -th row of X 
+</span><span class="s1">        to belong to class  j∈{1,…,K}&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_predict_prob_object</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">])</span></code></pre></div>
+<h2 id="testing-the-implemented-algorithm">Testing the implemented algorithm</h2>
+
+<h3 id="classification">Classification</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Prepare a synthetic data for classification</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+                          <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                                                   <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># print results of trained classification model</span>
+<span class="k">def</span> <span class="nf">print_results_clf</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">prob_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Accuracy: {0:.2f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">prob_pred</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;predict_proba works!&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&#34;Accuracy = {0:.2f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Predicted class labels&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;True class labels&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span></code></pre></div>
+<p>Test our implementation results</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">clf1</span> <span class="o">=</span> <span class="n">DecisionTree</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+<span class="n">clf1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">print_results_clf</span><span class="p">(</span><span class="n">clf1</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">Accuracy: 0.87
+predict_proba works!</pre></div>
+<p><img src="output_27_1.png" alt="png" /></p>
+
+<p>Now compare our results with <code>sklearn</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">clf2</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+<span class="n">clf2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">print_results_clf</span><span class="p">(</span><span class="n">clf2</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">Accuracy: 0.88
+predict_proba works!</pre></div>
+<p><img src="output_30_1.png" alt="png" /></p>
+
+<p>Our classifier results are pretty close to the sklearn.</p>
+
+<h3 id="regression">Regression</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Prepare a synthetic data for regression</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                      <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># print results of trained regression model</span>
+<span class="k">def</span> <span class="nf">print_results_reg</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Mean Squared Error: {0:.2f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;MSE = {0:.2f}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">));</span></code></pre></div>
+<p>Test our implementation results</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">reg1</span> <span class="o">=</span> <span class="n">DecisionTree</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+<span class="n">reg1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">print_results_reg</span><span class="p">(</span><span class="n">reg1</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">Mean Squared Error: 68.95</pre></div>
+<p><img src="output_36_1.png" alt="png" /></p>
+
+<p>Now compare our results with <code>sklearn</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">reg2</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">)</span>
+<span class="n">reg2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">print_results_reg</span><span class="p">(</span><span class="n">reg2</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">Mean Squared Error: 67.15</pre></div>
+<p><img src="output_39_1.png" alt="png" /></p>
+
+<p>Mean squared error are expected to be lower.</p>
+
+<p>Our regressor is also pretty close to the sklearn regressor.</p>
+
+<p>Great, we acheived competitive results as of standard library.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://mlcourse.ai/">https://mlcourse.ai/</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/tree.html#decision-trees">https://scikit-learn.org/stable/modules/tree.html#decision-trees</a></li>
+</ul>
+
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>

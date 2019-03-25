@@ -19,7 +19,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
         <title>
-    Union | Nitin Patil
+    Gradient boosting machines | Nitin Patil
 </title>
     
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
@@ -89,15 +89,15 @@
     <header>
         <div class="container">
             <div class="note-title">
-                <h1 class="title">Union</h1>
+                <h1 class="title">Gradient boosting machines</h1>
 
                 <div class="note-meta">
                     <div class="date">
                         <span class="posted-on">
                                 
                             <i class="fa fa-calendar"></i>
-                            <time datetime='2019-02-13T18:10:00&#43;05:30'>
-                                February 13, 2019
+                            <time datetime='2019-01-25T19:14:46&#43;05:30'>
+                                January 25, 2019
                             </time>
                         </span>
                     </div>
@@ -108,56 +108,71 @@
     
     <div class="container">
         <div class="post-content">
-            <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Get the lowest and highest gdp country in single query
-</span><span class="c1">-- UNION operator is used to combine the result-set of two or more SELECT statements.
-</span><span class="c1"></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="p">(</span><span class="k">select</span> <span class="n">top</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="k">from</span> <span class="n">world</span> <span class="k">order</span> <span class="k">by</span> <span class="n">gdp</span> <span class="k">desc</span><span class="p">)</span> <span class="n">a</span>
-<span class="k">UNION</span>
-<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="p">(</span><span class="k">select</span> <span class="n">top</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="k">from</span> <span class="n">world</span> <span class="k">order</span> <span class="k">by</span> <span class="n">gdp</span> <span class="k">asc</span><span class="p">)</span> <span class="n">b</span></code></pre></div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+            
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<p>In machine learning we are given a set of data points and goal is to create a function that draws nice curve through the data points. We call that function a model and it maps $X$ to $y$, thus, making predictions given some unknown $x$. Adding up a bunch of subfunctions to create a composite function is called additive modeling. Gradient boosting machines use additive modeling to gradually nudge an approximate model towards a really good model, by adding simple submodels to a composite model.</p>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>country</th>
-      <th>continent</th>
-      <th>area</th>
-      <th>population</th>
-      <th>gdp</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Afghanistan</td>
-      <td>Asia</td>
-      <td>647500</td>
-      <td>31056997</td>
-      <td>700</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>United States</td>
-      <td>North America</td>
-      <td>9631420</td>
-      <td>298444215</td>
-      <td>37800</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<h2 id="boosting">Boosting</h2>
+
+<p>Boosting combines multiple weak models sequentially into a single composite model. The idea is that, as we introduce more weak models, the overall model becomes a stronger and stronger predictor.</p>
+
+<h2 id="gradient-boosting-machines-gbm">Gradient boosting machines (GBM)</h2>
+
+<p><img src="golf-dir-vector.png" alt="PNG" /></p>
+
+<p>Lets consider boosting approach as a golf play. Golfer is initially hitting a  ball towards the hole at $y$ but only getting as far as $f_0(X)$. The golfer then repeatedly taps the ball more softly, working the ball towards the hole, after reassessing direction and distance to the hole at each stage.</p>
+
+<h4 id="gbm-for-regression-pseudocode">GBM for regression pseudocode</h4>
+
+<ol>
+<li>Train first model $f_0(X)$ to learn target $y$ given $X$. It predicts average of $y$ values in leaf nodes.</li>
+<li>Compute the difference between target $y$ and the prediction of first model, $y - f_0(X)$ it is called <em>residual</em> or <em>direction vector</em>.</li>
+<li>Train next weak model $\Delta_0(X)$ on residual of previous models i.e. $y - f_0(X)$</li>
+<li>The new prediction model $F_1(X)$ is the addition of previous model and a nudge, $\Delta_1(X)$, multiplied by learning rate $\eta$
+$$F_1(X) = f_0(X) + \eta \Delta_1(X)$$</li>
+<li>Likewise train every subsequent weak model $\Delta_m(X)$ on residual of previous models i.e. $y - F_{m-1}(X)$</li>
+<li>Adding together all weak models with initial $f_0(X)$ gives a strong composite model $F_M(X)$.</li>
+</ol>
+
+<p>$$\begin{align}
+\hat y &amp; = f_0(X) + \eta \Delta_1(X) + \eta \Delta_2(X) + &hellip;  +  \eta \Delta_M(X) \<br />
+ &amp; = f_0(X) + \eta \sum_{m=1}^M  \Delta_m(X) \<br />
+ &amp; = F_M(X) \<br />
+\end{align}$$</p>
+
+<p>Or using recurrence</p>
+
+<p>$$
+\begin{align}
+F_0(X) &amp; = f_0(X) <br />
+F_m(X) &amp; = F_{m-1}(X) + \eta \Delta_m(X) <br />
+\end{align}
+$$</p>
+
+<h4 id="two-common-direction-vector-choices">Two common direction vector choices</h4>
+
+<ul>
+<li><p>When $\Delta_m(X)$ models are trained on residual, $y - F_{m-1}(X)$, the overall model gets optimized for squared error loss function.</p></li>
+
+<li><p>When $\Delta_m(X)$ models are trained on sign, $sign (y - F_{m-1}(X))$, the overall model gets optimized for absolute error loss function.</p></li>
+</ul>
+
+<h3 id="hyper-parameters">Hyper-parameters</h3>
+
+<ul>
+<li><p>number of stages $M$ - The more stages we use, the more accurate the model, but the more likely we are to be overfitting.</p></li>
+
+<li><p>learning rate $\eta$ - The primary purpose of the learning rate, or “shrinkage” as some papers call it, is to reduce overfitting of the overall model.</p></li>
+</ul>
+
+<p>As Chen and Guestrin say in <a href="https://arxiv.org/pdf/1603.02754.pdf">XGBoost: A Scalable Tree Boosting System</a>, “shrinkage reduces the influence of each individual tree and leaves space for future trees to improve the model.”</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://explained.ai/gradient-boosting/index.html">https://explained.ai/gradient-boosting/index.html</a></li>
+<li><a href="https://arxiv.org/pdf/1603.02754.pdf">XGBoost: A Scalable Tree Boosting System</a></li>
+</ul>
 
         </div>
     </div>

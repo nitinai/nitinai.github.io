@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>about on Nitin Patil</title>
-    <link>https://nitinai.github.io/about/</link>
+    <link>/about/</link>
     <description>Recent content in about on Nitin Patil</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 25 Jan 2019 19:14:46 +0530</lastBuildDate>
     
-	<atom:link href="https://nitinai.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/about/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>https://nitinai.github.io/about/me/</link>
+      <link>/about/me/</link>
       <pubDate>Tue, 01 Jan 2019 11:53:49 -0700</pubDate>
       
-      <guid>https://nitinai.github.io/about/me/</guid>
+      <guid>/about/me/</guid>
       <description>I am a software engineer with 12 years of experience. I am interested in machine learning and working upon my ML skills. This site contains notes prepared as part of my study.</description>
     </item>
     
