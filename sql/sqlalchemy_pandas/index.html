@@ -118,7 +118,7 @@
 <h3 id="connect-with-sql-database">Connect with SQL database</h3>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># PyMySQL is a python connection driver for MySQL</span>
 <span class="err">!</span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PyMySQL</span></code></pre></div>
-<p><code>create_engine</code> returns an instance of <code>Engine</code>, and it represents the core interface to the database,adapted through a dialect. On first time call of <code>Engine.execute()</code> or <code>Engine.connect()</code> Engine establishes a real connection to the database.</p>
+<p><code>create_engine</code> returns an instance of <code>Engine</code>, and it represents the core interface to the database, adapted through a dialect. On first time call of <code>Engine.execute()</code> or <code>Engine.connect()</code> Engine establishes a real connection to the database.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># The typical form of a database URL is: dialect+driver://username:password@host:port/database</span>
 
 <span class="n">engine</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://username:password@localhost:3306/mydb&#39;</span><span class="p">)</span>
@@ -250,8 +250,9 @@
 <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">more_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span></code></pre></div>
 <p>Append the data in database table</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df1</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> 
-           <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="c1"># the SQL table gets appended</span>
-           <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM country&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span></code></pre></div>
+           <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+           <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span> <span class="c1"># the SQL table gets appended</span>
+           <span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM country&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span></code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {

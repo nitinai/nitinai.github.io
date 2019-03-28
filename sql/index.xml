@@ -55,7 +55,7 @@
       <guid>/sql/sqlalchemy_pandas/</guid>
       <description>The SQLAlchemy is a python library for efficient database access. It abstracts away many of the common differences between different SQL databases.
 pandas has read_sql and DataFrame.to_sql functions which enable easy read/ write of SQL tables from SQLAlchemy connection.
-import sqlalchemy as db import pandas as pd Connect with SQL database # PyMySQL is a python connection driver for MySQL !pip3 install PyMySQL create_engine returns an instance of Engine, and it represents the core interface to the database,adapted through a dialect.</description>
+import sqlalchemy as db import pandas as pd Connect with SQL database # PyMySQL is a python connection driver for MySQL !pip3 install PyMySQL create_engine returns an instance of Engine, and it represents the core interface to the database, adapted through a dialect.</description>
     </item>
     
   </channel>
