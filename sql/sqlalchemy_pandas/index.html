@@ -19,7 +19,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
         <title>
-    Database operations with SQLAlchemy and Pandas | Nitin Patil
+    Database operations with python | Nitin Patil
 </title>
     
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
@@ -89,7 +89,7 @@
     <header>
         <div class="container">
             <div class="note-title">
-                <h1 class="title">Database operations with SQLAlchemy and Pandas</h1>
+                <h1 class="title">Database operations with python</h1>
 
                 <div class="note-meta">
                     <div class="date">
@@ -110,15 +110,19 @@
         <div class="post-content">
             
 
-<p>The SQLAlchemy library abstracts away many of the common differences between SQL databases. pandas has a <code>read_sql</code> function that enables you to read data easily from a general SQLAlchemy connection. Additionally the <code>DataFrame.to_sql</code> function lets us write the dataframe as table in SQL databse.</p>
+<p>The <code>SQLAlchemy</code> is a python library for efficient database access. It abstracts away many of the common differences between different SQL databases.</p>
+
+<p><code>pandas</code> has <code>read_sql</code> and <code>DataFrame.to_sql</code> functions which enable easy read/ write of SQL tables from SQLAlchemy connection.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="kn">as</span> <span class="nn">db</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span></code></pre></div>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span></code></pre></div>
 <h3 id="connect-with-sql-database">Connect with SQL database</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Create an engine to the `test` database</span>
-<span class="c1"># The typical form of a database URL is `dialect+driver://username:password@host:port/database`</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://root:root@localhost:3306/test&#39;</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># PyMySQL is a python connection driver for MySQL</span>
+<span class="err">!</span><span class="n">pip3</span> <span class="n">install</span> <span class="n">PyMySQL</span></code></pre></div>
+<p><code>create_engine</code> returns an instance of <code>Engine</code>, and it represents the core interface to the database,adapted through a dialect. On first time call of <code>Engine.execute()</code> or <code>Engine.connect()</code> Engine establishes a real connection to the database.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># The typical form of a database URL is: dialect+driver://username:password@host:port/database</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://username:password@localhost:3306/mydb&#39;</span><span class="p">)</span>
+<span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span></code></pre></div>
 <p>For now our database has single table.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Print the table names</span>
 <span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;users&#39;]</pre></div>
@@ -178,11 +182,11 @@
 
 <h3 id="creata-table-in-sql-database">Creata table in SQL database</h3>
 
-<p>Write all the records stored in a DataFrame to a SQL database as table named <code>country</code></p>
+<p>Write all records stored in dataframe to SQL database table named <code>country</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> 
           <span class="n">index</span><span class="o">=</span><span class="bp">False</span> <span class="c1"># Do not want DataFrame index as a table column</span>
          <span class="p">)</span></code></pre></div>
-<p>We can see the table is created in database</p>
+<p>We can check if table is created in database</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;country&#39;, &#39;users&#39;]</pre></div>
 <h3 id="read-sql-table">Read SQL table</h3>
 
@@ -235,7 +239,7 @@
 </div>
 
 <h3 id="append-to-sql-table">Append to SQL table</h3>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># create another dataframe with some more nations entry</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># create another dataframe with some more nation&#39;s entry</span>
 
 <span class="n">more_data</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">9596960</span><span class="p">,</span> <span class="mi">1313973713</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span>
        <span class="p">(</span><span class="s1">&#39;United States&#39;</span><span class="p">,</span> <span class="s1">&#39;North America&#39;</span><span class="p">,</span> <span class="mi">9631420</span><span class="p">,</span> <span class="mi">298444215</span><span class="p">,</span> <span class="mi">37800</span><span class="p">),</span>
@@ -245,8 +249,9 @@
 
 <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">more_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span></code></pre></div>
 <p>Append the data in database table</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># With `if_exists=&#39;append&#39;` the SQL table gets appended</span>
-<span class="n">df1</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM country&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df1</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> 
+           <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="c1"># the SQL table gets appended</span>
+           <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM country&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span></code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -336,7 +341,9 @@
 <h3 id="delete-records-from-sql-table">Delete records from SQL table</h3>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">drop_query</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;DELETE FROM country 
 </span><span class="s2">                WHERE country = &#39;China&#39;
-</span><span class="s2">                &#34;&#34;&#34;</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">drop_query</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM country&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span></code></pre></div>
+</span><span class="s2">                &#34;&#34;&#34;</span></code></pre></div>
+<p>Execute a SQL statement construct.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">drop_query</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM country&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span></code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {

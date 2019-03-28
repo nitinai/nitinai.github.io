@@ -48,13 +48,14 @@
     </item>
     
     <item>
-      <title>Database operations with SQLAlchemy and Pandas</title>
+      <title>Database operations with python</title>
       <link>/sql/sqlalchemy_pandas/</link>
       <pubDate>Fri, 25 Jan 2019 19:14:46 +0530</pubDate>
       
       <guid>/sql/sqlalchemy_pandas/</guid>
-      <description>The SQLAlchemy library abstracts away many of the common differences between SQL databases. pandas has a read_sql function that enables you to read data easily from a general SQLAlchemy connection. Additionally the DataFrame.to_sql function lets us write the dataframe as table in SQL databse.
-import sqlalchemy as db import pandas as pd import warnings warnings.filterwarnings(&amp;#39;ignore&amp;#39;) Connect with SQL database # Create an engine to the `test` database # The typical form of a database URL is `dialect+driver://username:password@host:port/database` engine = db.</description>
+      <description>The SQLAlchemy is a python library for efficient database access. It abstracts away many of the common differences between different SQL databases.
+pandas has read_sql and DataFrame.to_sql functions which enable easy read/ write of SQL tables from SQLAlchemy connection.
+import sqlalchemy as db import pandas as pd Connect with SQL database # PyMySQL is a python connection driver for MySQL !pip3 install PyMySQL create_engine returns an instance of Engine, and it represents the core interface to the database,adapted through a dialect.</description>
     </item>
     
   </channel>
