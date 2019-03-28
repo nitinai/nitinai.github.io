@@ -23,6 +23,11 @@
   </url>
   
   <url>
+    <loc>/sql/sqlalchemy_pandas/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/machine_learning/decision_tree_algorithm/</loc>
     <lastmod>2019-01-25T19:14:46+05:30</lastmod>
   </url>

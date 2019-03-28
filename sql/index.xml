@@ -47,5 +47,15 @@
       <description>-- create table world  CREATE TABLE world ( -- column and datatype  country varchar(100), continent varchar(25), area int, population int, gdp int )-- Get all column names and their data types from table  SELECT COLUMN_NAME, DATA_TYPE from master.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N&amp;#39;world&amp;#39; -- Use &amp;#34;N&amp;#34; for handlling unicode string like varchar in ANSI(32bit) and nvarchar in unicode(64bit)   .dataframe tbody tr th:only-of-type { vertical-align: middle; } .</description>
     </item>
     
+    <item>
+      <title>Database operations with SQLAlchemy and Pandas</title>
+      <link>/sql/sqlalchemy_pandas/</link>
+      <pubDate>Fri, 25 Jan 2019 19:14:46 +0530</pubDate>
+      
+      <guid>/sql/sqlalchemy_pandas/</guid>
+      <description>The SQLAlchemy library abstracts away many of the common differences between SQL databases. pandas has a read_sql function that enables you to read data easily from a general SQLAlchemy connection. Additionally the DataFrame.to_sql function lets us write the dataframe as table in SQL databse.
+import sqlalchemy as db import pandas as pd import warnings warnings.filterwarnings(&amp;#39;ignore&amp;#39;) Connect with SQL database # Create an engine to the `test` database # The typical form of a database URL is `dialect+driver://username:password@host:port/database` engine = db.</description>
+    </item>
+    
   </channel>
 </rss>

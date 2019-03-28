@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135109602-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135109602-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    Database operations with SQLAlchemy and Pandas | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/syntax.css">
+
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              TeX: { extensions: ["autobold.js"]
+                    },
+              MathML: {
+                    extensions: ["mml3.js", "content-mathml.js"]
+                    },
+              tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] }
+            });
+        </script>
+
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="//projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="//about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Database operations with SQLAlchemy and Pandas</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-01-25T19:14:46&#43;05:30'>
+                                January 25, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<p>The SQLAlchemy library abstracts away many of the common differences between SQL databases. pandas has a <code>read_sql</code> function that enables you to read data easily from a general SQLAlchemy connection. Additionally the <code>DataFrame.to_sql</code> function lets us write the dataframe as table in SQL databse.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="kn">as</span> <span class="nn">db</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span></code></pre></div>
+<h3 id="connect-with-sql-database">Connect with SQL database</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Create an engine to the `test` database</span>
+<span class="c1"># The typical form of a database URL is `dialect+driver://username:password@host:port/database`</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://root:root@localhost:3306/test&#39;</span><span class="p">)</span></code></pre></div>
+<p>For now our database has single table.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Print the table names</span>
+<span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;users&#39;]</pre></div>
+<h3 id="pandas-dataframe">Pandas DataFrame</h3>
+
+<p>Create a dataframe with simple data</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;gdp&#39;</span><span class="p">]</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Afghanistan&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">647500</span><span class="p">,</span> <span class="mi">31056997</span><span class="p">,</span> <span class="mi">700</span><span class="p">),</span>
+       <span class="p">(</span><span class="s1">&#39;India&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">3287590</span><span class="p">,</span> <span class="mi">1095351995</span><span class="p">,</span> <span class="mi">2900</span><span class="p">)]</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>area</th>
+      <th>population</th>
+      <th>gdp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>647500</td>
+      <td>31056997</td>
+      <td>700</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>India</td>
+      <td>Asia</td>
+      <td>3287590</td>
+      <td>1095351995</td>
+      <td>2900</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="creata-table-in-sql-database">Creata table in SQL database</h3>
+
+<p>Write all the records stored in a DataFrame to a SQL database as table named <code>country</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> 
+          <span class="n">index</span><span class="o">=</span><span class="bp">False</span> <span class="c1"># Do not want DataFrame index as a table column</span>
+         <span class="p">)</span></code></pre></div>
+<p>We can see the table is created in database</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;country&#39;, &#39;users&#39;]</pre></div>
+<h3 id="read-sql-table">Read SQL table</h3>
+
+<p>We can read the SQL database table conveniently with <code>read_sql</code> function. It returns the table in <code>DataFrame</code> object.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM country&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>area</th>
+      <th>population</th>
+      <th>gdp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>647500</td>
+      <td>31056997</td>
+      <td>700</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>India</td>
+      <td>Asia</td>
+      <td>3287590</td>
+      <td>1095351995</td>
+      <td>2900</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="append-to-sql-table">Append to SQL table</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># create another dataframe with some more nations entry</span>
+
+<span class="n">more_data</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">9596960</span><span class="p">,</span> <span class="mi">1313973713</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span>
+       <span class="p">(</span><span class="s1">&#39;United States&#39;</span><span class="p">,</span> <span class="s1">&#39;North America&#39;</span><span class="p">,</span> <span class="mi">9631420</span><span class="p">,</span> <span class="mi">298444215</span><span class="p">,</span> <span class="mi">37800</span><span class="p">),</span>
+       <span class="p">(</span><span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;South America&#39;</span><span class="p">,</span> <span class="mi">8511965</span><span class="p">,</span> <span class="mi">188078227</span><span class="p">,</span> <span class="mi">7600</span><span class="p">),</span>
+       <span class="p">(</span><span class="s1">&#39;South Africa&#39;</span><span class="p">,</span> <span class="s1">&#39;Africa&#39;</span><span class="p">,</span> <span class="mi">1219912</span><span class="p">,</span> <span class="mi">44187637</span><span class="p">,</span> <span class="mi">10700</span><span class="p">),</span>
+       <span class="p">(</span><span class="s1">&#39;France&#39;</span><span class="p">,</span> <span class="s1">&#39;Europe&#39;</span><span class="p">,</span> <span class="mi">547030</span><span class="p">,</span>	<span class="mi">60876136</span><span class="p">,</span> <span class="mi">27600</span><span class="p">)]</span>
+
+<span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">more_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span></code></pre></div>
+<p>Append the data in database table</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># With `if_exists=&#39;append&#39;` the SQL table gets appended</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM country&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>area</th>
+      <th>population</th>
+      <th>gdp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>647500</td>
+      <td>31056997</td>
+      <td>700</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>India</td>
+      <td>Asia</td>
+      <td>3287590</td>
+      <td>1095351995</td>
+      <td>2900</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>China</td>
+      <td>Asia</td>
+      <td>9596960</td>
+      <td>1313973713</td>
+      <td>5000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>United States</td>
+      <td>North America</td>
+      <td>9631420</td>
+      <td>298444215</td>
+      <td>37800</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Brazil</td>
+      <td>South America</td>
+      <td>8511965</td>
+      <td>188078227</td>
+      <td>7600</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>South Africa</td>
+      <td>Africa</td>
+      <td>1219912</td>
+      <td>44187637</td>
+      <td>10700</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>France</td>
+      <td>Europe</td>
+      <td>547030</td>
+      <td>60876136</td>
+      <td>27600</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="delete-records-from-sql-table">Delete records from SQL table</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">drop_query</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;DELETE FROM country 
+</span><span class="s2">                WHERE country = &#39;China&#39;
+</span><span class="s2">                &#34;&#34;&#34;</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">drop_query</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&#34;SELECT * FROM country&#34;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>area</th>
+      <th>population</th>
+      <th>gdp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>647500</td>
+      <td>31056997</td>
+      <td>700</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>India</td>
+      <td>Asia</td>
+      <td>3287590</td>
+      <td>1095351995</td>
+      <td>2900</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>United States</td>
+      <td>North America</td>
+      <td>9631420</td>
+      <td>298444215</td>
+      <td>37800</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Brazil</td>
+      <td>South America</td>
+      <td>8511965</td>
+      <td>188078227</td>
+      <td>7600</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>South Africa</td>
+      <td>Africa</td>
+      <td>1219912</td>
+      <td>44187637</td>
+      <td>10700</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>France</td>
+      <td>Europe</td>
+      <td>547030</td>
+      <td>60876136</td>
+      <td>27600</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="drop-table">Drop table</h3>
+
+<p>You can completely drop the table.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">drop_query</span> <span class="o">=</span> <span class="s2">&#34;DROP TABLE country&#34;</span>
+<span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">drop_query</span><span class="p">);</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;users&#39;]</pre></div>
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="http://docs.sqlalchemy.org">http://docs.sqlalchemy.org</a></li>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/">https://pandas.pydata.org/pandas-docs/stable/</a></li>
+</ul>
+
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>

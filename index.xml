@@ -48,6 +48,16 @@
     </item>
     
     <item>
+      <title>Database operations with SQLAlchemy and Pandas</title>
+      <link>/sql/sqlalchemy_pandas/</link>
+      <pubDate>Fri, 25 Jan 2019 19:14:46 +0530</pubDate>
+      
+      <guid>/sql/sqlalchemy_pandas/</guid>
+      <description>The SQLAlchemy library abstracts away many of the common differences between SQL databases. pandas has a read_sql function that enables you to read data easily from a general SQLAlchemy connection. Additionally the DataFrame.to_sql function lets us write the dataframe as table in SQL databse.
+import sqlalchemy as db import pandas as pd import warnings warnings.filterwarnings(&amp;#39;ignore&amp;#39;) Connect with SQL database # Create an engine to the `test` database # The typical form of a database URL is `dialect+driver://username:password@host:port/database` engine = db.</description>
+    </item>
+    
+    <item>
       <title>Decision tree algorithm</title>
       <link>/machine_learning/decision_tree_algorithm/</link>
       <pubDate>Fri, 25 Jan 2019 19:14:46 +0530</pubDate>
