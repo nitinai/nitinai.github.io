@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/sql/alter-table/</loc>
+    <lastmod>2019-03-29T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sql/db_interconnected_tables/</loc>
+    <lastmod>2019-03-29T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sql/drop/</loc>
+    <lastmod>2019-03-29T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/sql/union/</loc>
     <lastmod>2019-02-13T18:10:00+05:30</lastmod>
   </url>
@@ -104,7 +119,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-02-13T18:10:00+05:30</lastmod>
+    <lastmod>2019-03-29T19:14:46+05:30</lastmod>
     <priority>0</priority>
   </url>
   

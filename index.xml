@@ -6,10 +6,45 @@
     <description>Recent content on Nitin Patil</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Feb 2019 18:10:00 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 29 Mar 2019 19:14:46 +0530</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Alter table</title>
+      <link>/sql/alter-table/</link>
+      <pubDate>Fri, 29 Mar 2019 19:14:46 +0530</pubDate>
+      
+      <guid>/sql/alter-table/</guid>
+      <description>The ALTER TABLE statement is used to add, delete, or modify columns in an existing table. It is also used to add and drop various constraints on an existing table.
+Current state CREATE TABLE student( student_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30) NOT NULL, last_name VARCHAR(30) NOT NULL);SHOW TABLES[(&amp;#39;student&amp;#39;,)]DESCRIBE student  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .</description>
+    </item>
+    
+    <item>
+      <title>Create database, tables with relation</title>
+      <link>/sql/db_interconnected_tables/</link>
+      <pubDate>Fri, 29 Mar 2019 19:14:46 +0530</pubDate>
+      
+      <guid>/sql/db_interconnected_tables/</guid>
+      <description>Create database Create a new database named as employees
+-- Create a database CREATE DATABASE IF NOT EXISTS employees; Show all the databases
+SHOW DATABASES[(&amp;#39;employees&amp;#39;,), (&amp;#39;information_schema&amp;#39;,), (&amp;#39;mysql&amp;#39;,), (&amp;#39;performance_schema&amp;#39;,), (&amp;#39;sakila&amp;#39;,), (&amp;#39;sys&amp;#39;,), (&amp;#39;world&amp;#39;,)] Set the current database as employees
+USE employees; Check what is current database
+SELECT DATABASE()[(&amp;#39;employees&amp;#39;,)] Create tables Create employees table
+CREATE TABLE employees ( emp_no INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, birth_date DATE NOT NULL, first_name VARCHAR(20) NOT NULL, last_name VARCHAR(20) NOT NULL, gender ENUM (&amp;#39;M&amp;#39;,&amp;#39;F&amp;#39;) NOT NULL, hire_date DATE NOT NULL ); VARCHAR - variable-length alphanumeric string, dynamic memory allocation, slower than CHAR</description>
+    </item>
+    
+    <item>
+      <title>Drop</title>
+      <link>/sql/drop/</link>
+      <pubDate>Fri, 29 Mar 2019 19:14:46 +0530</pubDate>
+      
+      <guid>/sql/drop/</guid>
+      <description> Drop table You can drop single table
+DROP TABLE IF EXISTS dept_emp; If you want to drop multiple tables
+DROP TABLE IF EXISTS dept_manager, titles, salaries, employees, departments; Drop database DROP DATABASE IF EXISTS employees;</description>
+    </item>
     
     <item>
       <title>Union</title>
@@ -30,7 +65,7 @@
     </item>
     
     <item>
-      <title>Select</title>
+      <title>Select where</title>
       <link>/sql/select/</link>
       <pubDate>Wed, 13 Feb 2019 18:05:20 +0530</pubDate>
       
@@ -44,7 +79,7 @@
       <pubDate>Tue, 12 Feb 2019 19:44:49 +0530</pubDate>
       
       <guid>/sql/create-table/</guid>
-      <description>-- create table world  CREATE TABLE world ( -- column and datatype  country varchar(100), continent varchar(25), area int, population int, gdp int )-- Get all column names and their data types from table  SELECT COLUMN_NAME, DATA_TYPE from master.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N&amp;#39;world&amp;#39; -- Use &amp;#34;N&amp;#34; for handlling unicode string like varchar in ANSI(32bit) and nvarchar in unicode(64bit)   .dataframe tbody tr th:only-of-type { vertical-align: middle; } .</description>
+      <description>-- create table world  CREATE TABLE world ( -- column, datatype, constraint  country VARCHAR(25) NOT NULL PRIMARY KEY, continent VARCHAR(25) NOT NULL, area INT NOT NULL, population INT, gdp INT )-- Get all column names and their data types from table  SELECT COLUMN_NAME, DATA_TYPE from master.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N&amp;#39;world&amp;#39; -- Use &amp;#34;N&amp;#34; for handlling unicode string like varchar in ANSI(32bit) and nvarchar in unicode(64bit)   .</description>
     </item>
     
     <item>

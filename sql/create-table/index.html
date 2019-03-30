@@ -113,12 +113,12 @@
 <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- create table world
 </span><span class="c1"></span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">world</span> <span class="p">(</span>
-    <span class="c1">-- column and datatype
-</span><span class="c1"></span>    <span class="n">country</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-    <span class="n">continent</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span>
-    <span class="n">area</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">population</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">gdp</span> <span class="nb">int</span>
+    <span class="c1">-- column, datatype, constraint
+</span><span class="c1"></span>    <span class="n">country</span>    <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">continent</span>  <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">area</span>       <span class="nb">INT</span>         <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">population</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">gdp</span>        <span class="nb">INT</span>
 <span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Get all column names and their data types from table
 </span><span class="c1"></span>
 <span class="k">SELECT</span> <span class="k">COLUMN_NAME</span><span class="p">,</span> <span class="n">DATA_TYPE</span> <span class="k">from</span> <span class="n">master</span><span class="p">.</span><span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">COLUMNS</span>
@@ -176,9 +176,13 @@
 </div>
 
 <h2 id="insert-rows">Insert rows</h2>
+
+<p>Insert single record</p>
 <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">world</span> <span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="n">continent</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">gdp</span><span class="p">)</span> 
-<span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;Afghanistan&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">647500</span><span class="p">,</span> <span class="mi">31056997</span><span class="p">,</span> <span class="mi">700</span><span class="p">),</span>
-       <span class="p">(</span><span class="s1">&#39;India&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">3287590</span><span class="p">,</span> <span class="mi">1095351995</span><span class="p">,</span> <span class="mi">2900</span><span class="p">),</span>
+<span class="n">VALUE</span> <span class="p">(</span><span class="s1">&#39;Afghanistan&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">647500</span><span class="p">,</span> <span class="mi">31056997</span><span class="p">,</span> <span class="mi">700</span><span class="p">)</span></code></pre></div>
+<p>Insert multiple records in one go</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">world</span> <span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="n">continent</span><span class="p">,</span> <span class="n">area</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">gdp</span><span class="p">)</span> 
+<span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;India&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">3287590</span><span class="p">,</span> <span class="mi">1095351995</span><span class="p">,</span> <span class="mi">2900</span><span class="p">),</span>
        <span class="p">(</span><span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia&#39;</span><span class="p">,</span> <span class="mi">9596960</span><span class="p">,</span> <span class="mi">1313973713</span><span class="p">,</span> <span class="mi">5000</span><span class="p">),</span>
        <span class="p">(</span><span class="s1">&#39;United States&#39;</span><span class="p">,</span> <span class="s1">&#39;North America&#39;</span><span class="p">,</span> <span class="mi">9631420</span><span class="p">,</span> <span class="mi">298444215</span><span class="p">,</span> <span class="mi">37800</span><span class="p">),</span>
        <span class="p">(</span><span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;South America&#39;</span><span class="p">,</span> <span class="mi">8511965</span><span class="p">,</span> <span class="mi">188078227</span><span class="p">,</span> <span class="mi">7600</span><span class="p">),</span>

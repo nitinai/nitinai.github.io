@@ -127,7 +127,7 @@
 <ol>
 <li>Train first model $f_0(X)$ to learn target $y$ given $X$. It predicts average of $y$ values in leaf nodes.</li>
 <li>Compute the difference between target $y$ and the prediction of first model, $y - f_0(X)$ it is called <em>residual</em> or <em>direction vector</em>.</li>
-<li>Train next weak model $\Delta_0(X)$ on residual of previous models i.e. $y - f_0(X)$</li>
+<li>Train next weak model $\Delta_1(X)$ on residual of previous models i.e. $y - f_0(X)$</li>
 <li>The new prediction model $F_1(X)$ is the addition of previous model and a nudge, $\Delta_1(X)$, multiplied by learning rate $\eta$
 $$F_1(X) = f_0(X) + \eta \Delta_1(X)$$</li>
 <li>Likewise train every subsequent weak model $\Delta_m(X)$ on residual of previous models i.e. $y - F_{m-1}(X)$</li>
@@ -142,12 +142,9 @@ $$F_1(X) = f_0(X) + \eta \Delta_1(X)$$</li>
 
 <p>Or using recurrence</p>
 
-<p>$$
-\begin{align}
-F_0(X) &amp; = f_0(X) <br />
-F_m(X) &amp; = F_{m-1}(X) + \eta \Delta_m(X) <br />
-\end{align}
-$$</p>
+<p>$$F_0(X) = f_0(X)$$</p>
+
+<p>$$F_m(X) = F_{m-1}(X) + \eta \Delta_m(X)$$</p>
 
 <h4 id="two-common-direction-vector-choices">Two common direction vector choices</h4>
 
