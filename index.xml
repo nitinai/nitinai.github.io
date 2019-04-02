@@ -235,7 +235,7 @@ git status Ignore from commit Add entries of files you want to exclude from comm
       <pubDate>Tue, 01 Jan 2019 11:53:49 -0700</pubDate>
       
       <guid>/projects/projects/</guid>
-      <description>In progress</description>
+      <description>ml-learn This project contains bare minimum implementation of different machine learning algorithms. The main purpose of this project is to understand mechanics of these algorthms.</description>
     </item>
     
   </channel>
