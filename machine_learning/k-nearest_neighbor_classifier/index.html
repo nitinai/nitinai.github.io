@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135109602-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135109602-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    Image Classification | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/syntax.css">
+
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              TeX: { extensions: ["autobold.js"]
+                    },
+              MathML: {
+                    extensions: ["mml3.js", "content-mathml.js"]
+                    },
+              tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] }
+            });
+        </script>
+
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Image Classification</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-03-31T18:05:20&#43;05:30'>
+                                March 31, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<p>To understand the algorithm let&rsquo;s consider a problem of <a href="/machine_learning/image_classification/">image classification</a>, in which we have an image of 32 x 32 x 3 pixel and want to assign a single label from a fixed set of categories.</p>
+
+<h2 id="nearest-neighbor-classifier">Nearest Neighbor Classifier</h2>
+
+<p>The learning step of nearest neighbor classifier is very simple. It just stores all the dataset to compare with test image.</p>
+
+<p>To predict it takes a test image, compare it to every single one of the training images, and predict the label of the closest training image.</p>
+
+<h3 id="distance-calculation">Distance calculation</h3>
+
+<p>There are many ways of computing distances between vectors.</p>
+
+<h4 id="l1-distance">L1 distance</h4>
+
+<p>To find the distance between two images we may use L1 distance.</p>
+
+<p>In L1 distance we compare the images pixel by pixel and add up all the differences.</p>
+
+<p>$$d_1 (I_1, I<em>2) = \sum</em>{p} \left| I^p_1 - I^p_2 \right|$$</p>
+
+<p><img src="L1_distance.jpg" alt="L1_distance" /></p>
+
+<p>Two images are subtracted elementwise and then all differences are added up to a single number. If two images are identical the result will be zero. But if the images are very different the result will be large.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xtr</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre></div>
+<h4 id="implementation">Implementation</h4>
+
+<p>Load the CIFAR-10 data.</p>
+
+<p>The training data $Xtr$ is of [50,000 x 32 x 32 x 3] and a corresponding 1-dimensional array $Ytr$ (of length 50,000) holds the training labels (from 0 to 9)</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Xtr</span><span class="p">,</span> <span class="n">Ytr</span><span class="p">,</span> <span class="n">Xte</span><span class="p">,</span> <span class="n">Yte</span> <span class="o">=</span> <span class="n">load_CIFAR10</span><span class="p">(</span><span class="s1">&#39;data/cifar10/&#39;</span><span class="p">)</span></code></pre></div>
+<p>Flatten out all images to be one-dimensional</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Xtr_rows</span> <span class="o">=</span> <span class="n">Xtr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Xtr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Xtr_rows becomes 50000 x 3072</span>
+<span class="n">Xte_rows</span> <span class="o">=</span> <span class="n">Xte</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Xte</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># Xte_rows becomes 10000 x 3072</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">class</span> <span class="nc">NearestNeighbor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+  <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34; X is N x D where each row is an example. Y is 1-dimension of size N &#34;&#34;&#34;</span>
+    <span class="c1"># the nearest neighbor classifier simply remembers all the training data</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">Xtr</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">ytr</span> <span class="o">=</span> <span class="n">y</span>
+
+  <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34; X is N x D where each row is an example we wish to predict label for &#34;&#34;&#34;</span>
+    <span class="n">num_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># lets make sure that the output type matches the input type</span>
+    <span class="n">Ypred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_test</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ytr</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="c1"># loop over all test rows</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">num_test</span><span class="p">):</span>
+      <span class="c1"># find the nearest training image to the i&#39;th test image</span>
+      <span class="c1"># using the L1 distance (sum of absolute value differences)</span>
+      <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xtr</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">min_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span> <span class="c1"># get the index with smallest distance</span>
+      <span class="n">Ypred</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ytr</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span> <span class="c1"># predict the label of the nearest example</span>
+
+    <span class="k">return</span> <span class="n">Ypred</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># create a Nearest Neighbor classifier class</span>
+<span class="n">nn</span> <span class="o">=</span> <span class="n">NearestNeighbor</span><span class="p">()</span> 
+
+<span class="c1"># train the classifier on the training images and labels</span>
+<span class="n">nn</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">Xtr_rows</span><span class="p">,</span> <span class="n">Ytr</span><span class="p">)</span> 
+
+<span class="c1"># predict labels on the test images</span>
+<span class="n">Yte_predict</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xte_rows</span><span class="p">)</span>
+
+<span class="c1"># and now evaluate the classification accuracy, which is the average number</span>
+<span class="c1"># of examples that are correctly predicted (i.e. label matches)</span>
+<span class="k">print</span> <span class="p">(</span><span class="s1">&#39;accuracy: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Yte_predict</span> <span class="o">==</span> <span class="n">Yte</span><span class="p">)</span> <span class="p">))</span></code></pre></div>
+<h4 id="l2-distance">L2 distance</h4>
+
+<p>L2 distance has the geometric interpretation of computing the euclidean distance between two vectors.</p>
+
+<p>$$d_2 (I_1, I<em>2) = \sqrt{\sum</em>{p} \left( I^p_1 - I^p_2 \right)^2}$$</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xtr</span> <span class="o">-</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:]),</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">))</span></code></pre></div>
+<p>we could leave out the <code>np.sqrt</code> operation because square root is a monotonic function. Although, it scales the absolute sizes of the distances, it preserves the ordering, so the nearest neighbors with or without it are identical.</p>
+
+<h4 id="l1-vs-l2">L1 vs L2</h4>
+
+<p>L1 and L2 distances are equivalently known as L1/L2 norms (of the differences between a pair of images).</p>
+
+<p>The L2 distance is much more unforgiving than the L1 distance when it comes to differences between two vectors. i.e, the L2 distance prefers many medium disagreements to one big one.</p>
+
+<h2 id="k-nearest-neighbor-classifier">k-Nearest Neighbor Classifier</h2>
+
+<p>Instead of finding the single closest image in the training set, we will find the top k closest images, and have them vote on the label of the test image.</p>
+
+<p>Intuitively, higher values of k have a smoothing effect that makes the classifier more resistant to outliers.</p>
+
+<p>When k = 1, we recover the Nearest Neighbor classifier.</p>
+
+<h2 id="hyperparameters">Hyperparameters</h2>
+
+<p>Although Machine Learning algorithms learns paramters (like weights) from training data there are certain parameters which can not be learned, and called hyper-parameters. Infact we need to set the optimam values of hyper-parameters to enable the algorithm to learn best paramters.</p>
+
+<p>k, distance functions (L1 norm, L2 norm, dot products) are the hyperparameters of kNN algorithm.</p>
+
+<p>we should not use the test set for the purpose of tweaking hyperparameters. You should think of the test set as a very precious resource that should ideally never be touched until one time at the very end.</p>
+<div class="highlight"><pre class="chroma">Evaluate on the test set only a single time, at the very end.</pre></div>
+<h2 id="validation-set">Validation set</h2>
+
+<p>The correct way to set these hyperparameters is to split your training data into two: a training set and a fake test set, which we call validation set.</p>
+
+<p>Split your training set into training set and a validation set. Use validation set to tune all hyperparameters. At the end run a single time on the test set and report performance.</p>
+
+<h2 id="cross-validation">Cross-validation</h2>
+
+<p>In cases where the size of your training data (and therefore also the validation data) might be small, it is better to use cross-validation for hyperparameter tuning. Split your data in number of equal folds, leaving one fold for validation train the model on rest of the folds, Repeat this process to select each fold for validation.</p>
+
+<p>For example, in 5-fold cross-validation, we would split the training data into 5 equal folds, use 4 of them for training, and 1 for validation. We would then iterate over which fold is the validation fold, evaluate the performance, and finally average the performance across the different folds.</p>
+
+<p>Cross-validation help reduce noise in estimating which hyperparameters work best.</p>
+
+<p>Cross-validation is computationally expensive. If the dataset is huge people prefer to avoid cross-validation in favor of having a single validation split.</p>
+
+<p>Typical number of folds used in practice are 3-fold, 5-fold or 10-fold cross-validation.</p>
+
+<p><img src="validation.jpg" alt="validation" /></p>
+
+<p>Yellow fold is a validation fold.</p>
+
+<h3 id="aadvantages">Aadvantages</h3>
+
+<ul>
+<li>very simple to implement and understand.</li>
+<li>the classifier takes no time to train, since all that is required is to store and possibly index the training data.</li>
+</ul>
+
+<h3 id="disadvantages">Disadvantages</h3>
+
+<ul>
+<li>requires us to store the entire training set. This is space inefficient because datasets may easily be gigabytes in size.</li>
+<li>Classifying a test image is expensive since it requires a comparison to all training images.</li>
+</ul>
+
+<p>In practice we often care about the test time efficiency much more than the efficiency at training time.</p>
+
+<p>L1 or L2 distances on raw pixel values is not adequate since the distances correlate more strongly with backgrounds and color distributions of images than with their semantic content.</p>
+
+<h4 id="approximate-nearest-neighbor-ann">Approximate Nearest Neighbor (ANN)</h4>
+
+<p>There are several Approximate Nearest Neighbor (ANN) algorithms and libraries exist that can accelerate the nearest neighbor lookup in a dataset (e.g. <a href="http://www.cs.ubc.ca/research/flann/">FLANN</a>).</p>
+
+<p>These algorithms allow to trade off the correctness of the nearest neighbor retrieval with its space/time complexity during retrieval, and usually rely on a pre-processing/indexing stage that involves building a kdtree, or running the k-means algorithm.</p>
+
+<p><strong>Should use the full training set with the best hyperparameters?</strong>
+The optimal hyperparameters might change if you merge the validation set into training set (since the size of the data would be larger). In practice it is cleaner to not use the validation set in the final classifier and consider it to be <em>burned</em> on estimating the hyperparameters. Evaluate the best model on the test set.</p>
+
+<h3 id="further-reading">Further Reading</h3>
+
+<p>Here are some (optional) links you may find interesting for further reading:</p>
+
+<p><a href="http://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf">A Few Useful Things to Know about Machine Learning</a>, where especially section 6 is related but the whole paper is a warmly recommended reading.</p>
+
+<p><a href="http://people.csail.mit.edu/torralba/shortCourseRLOC/index.html">Recognizing and Learning Object Categories</a>, a short course of object categorization at ICCV 2005.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="http://cs231n.github.io/classification/">http://cs231n.github.io/classification/</a></li>
+</ul>
+
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>

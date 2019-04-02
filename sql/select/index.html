@@ -19,7 +19,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
         <title>
-    Select where | Nitin Patil
+    Select | Nitin Patil
 </title>
     
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
@@ -89,15 +89,15 @@
     <header>
         <div class="container">
             <div class="note-title">
-                <h1 class="title">Select where</h1>
+                <h1 class="title">Select</h1>
 
                 <div class="note-meta">
                     <div class="date">
                         <span class="posted-on">
                                 
                             <i class="fa fa-calendar"></i>
-                            <time datetime='2019-02-13T18:05:20&#43;05:30'>
-                                February 13, 2019
+                            <time datetime='2019-03-29T19:14:46&#43;05:30'>
+                                March 29, 2019
                             </time>
                         </span>
                     </div>
@@ -110,7 +110,10 @@
         <div class="post-content">
             
 
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">world</span></code></pre></div>
+<p><strong>Select first 5 records of table</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">LIMIT</span>  <span class="mi">5</span></code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -129,11 +132,14 @@
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>country</th>
+      <th>name</th>
       <th>continent</th>
       <th>area</th>
       <th>population</th>
       <th>gdp</th>
+      <th>capital</th>
+      <th>tld</th>
+      <th>flag</th>
     </tr>
   </thead>
   <tbody>
@@ -141,66 +147,66 @@
       <th>0</th>
       <td>Afghanistan</td>
       <td>Asia</td>
-      <td>647500</td>
-      <td>31056997</td>
-      <td>700</td>
+      <td>652230</td>
+      <td>25500100</td>
+      <td>20364000000</td>
+      <td>Kabul</td>
+      <td>.af</td>
+      <td>//upload.wikimedia.org/wikipedia/commons/a/a8/...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>India</td>
-      <td>Asia</td>
-      <td>3287590</td>
-      <td>1095351995</td>
-      <td>2900</td>
+      <td>Albania</td>
+      <td>Europe</td>
+      <td>28748</td>
+      <td>2821977</td>
+      <td>12044000000</td>
+      <td>Tirana</td>
+      <td>.al</td>
+      <td>//upload.wikimedia.org/wikipedia/commons/3/36/...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>China</td>
-      <td>Asia</td>
-      <td>9596960</td>
-      <td>1313973713</td>
-      <td>5000</td>
+      <td>Algeria</td>
+      <td>Africa</td>
+      <td>2381741</td>
+      <td>38700000</td>
+      <td>207021000000</td>
+      <td>Algiers</td>
+      <td>.dz</td>
+      <td>//upload.wikimedia.org/wikipedia/commons/7/77/...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>United States</td>
-      <td>North America</td>
-      <td>9631420</td>
-      <td>298444215</td>
-      <td>37800</td>
+      <td>Andorra</td>
+      <td>Europe</td>
+      <td>468</td>
+      <td>76098</td>
+      <td>3222000000</td>
+      <td>Andorra la Vella</td>
+      <td>.ad</td>
+      <td>//upload.wikimedia.org/wikipedia/commons/1/19/...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Brazil</td>
-      <td>South America</td>
-      <td>8511965</td>
-      <td>188078227</td>
-      <td>7600</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>South Africa</td>
+      <td>Angola</td>
       <td>Africa</td>
-      <td>1219912</td>
-      <td>44187637</td>
-      <td>10700</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>France</td>
-      <td>Europe</td>
-      <td>547030</td>
-      <td>60876136</td>
-      <td>27600</td>
+      <td>1246700</td>
+      <td>19183590</td>
+      <td>116308000000</td>
+      <td>Luanda</td>
+      <td>.ao</td>
+      <td>//upload.wikimedia.org/wikipedia/commons/9/9d/...</td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<h2 id="select-where">Select Where</h2>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- get all Asian countries
-</span><span class="c1"></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">world</span>
-<span class="k">where</span> <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Asia&#39;</span></code></pre></div>
+<p><strong>Get countries of Eurasia continent</strong>
+Using <code>WHERE</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">WHERE</span>  <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Eurasia&#39;</span> </code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -219,41 +225,1159 @@
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>country</th>
+      <th>name</th>
       <th>continent</th>
       <th>area</th>
       <th>population</th>
+      <th>gdp</th>
+      <th>capital</th>
+      <th>tld</th>
+      <th>flag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Armenia</td>
+      <td>Eurasia</td>
+      <td>29743</td>
+      <td>3017400</td>
+      <td>9950000000</td>
+      <td>Yerevan</td>
+      <td>.am</td>
+      <td>//upload.wikimedia.org/wikipedia/commons/2/2f/...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Russia</td>
+      <td>Eurasia</td>
+      <td>17125242</td>
+      <td>146000000</td>
+      <td>2029812000000</td>
+      <td>Moscow</td>
+      <td>.ru</td>
+      <td>//upload.wikimedia.org/wikipedia/commons/f/f3/...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Select records using <code>IN</code> to tell list of mutiple countries we are interested in.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> 
+       <span class="n">population</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">WHERE</span>  <span class="n">name</span> <span class="k">IN</span> <span class="p">(</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;United States&#39;</span> <span class="p">);</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Brazil</td>
+      <td>202794000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>United States</td>
+      <td>318320000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong><code>BETWEEN</code> allows range checking (range specified is inclusive of boundary values).</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> 
+       <span class="n">population</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">WHERE</span>  <span class="n">population</span> <span class="k">BETWEEN</span> <span class="mi">100000000</span> <span class="k">AND</span> <span class="mi">150000000</span><span class="p">;</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Japan</td>
+      <td>127090000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Mexico</td>
+      <td>119713203</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Russia</td>
+      <td>146000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong><code>LIKE</code> operator allow us to provide wildcard entries.</strong>
+- <code>%</code> - The percent sign represents zero, one, or multiple characters
+- <code>_</code> - The underscore represents a single character</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span> 
+<span class="k">FROM</span>   <span class="n">world</span>
+<span class="k">WHERE</span>  <span class="n">name</span> <span class="k">LIKE</span> <span class="p">(</span> <span class="s1">&#39;United%&#39;</span> <span class="p">)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>United Arab Emirates</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>United Kingdom</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>United States</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Multiple conditions</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">gdp</span> 
+<span class="k">FROM</span>   <span class="n">world</span>
+<span class="k">WHERE</span>  <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Asia&#39;</span> 
+       <span class="k">AND</span> <span class="n">gdp</span> <span class="o">&gt;</span> <span class="mi">1875213000000</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
       <th>gdp</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Afghanistan</td>
-      <td>Asia</td>
-      <td>647500</td>
-      <td>31056997</td>
-      <td>700</td>
+      <td>China</td>
+      <td>8358400000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>India</td>
-      <td>Asia</td>
-      <td>3287590</td>
-      <td>1095351995</td>
-      <td>2900</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>China</td>
-      <td>Asia</td>
-      <td>9596960</td>
-      <td>1313973713</td>
-      <td>5000</td>
+      <td>Japan</td>
+      <td>5960180000000</td>
     </tr>
   </tbody>
 </table>
 </div>
+
+<ul>
+<li><p>We can use the comparision operator <code>=  &gt;  &lt;  &gt;=  &lt;=  !=</code></p></li>
+
+<li><p>We can use <code>AND &amp;&amp;</code>, <code>OR ||</code>, <code>NOT !</code> to combine multiple condition in <code>WHERE</code> condition.</p></li>
+</ul>
+
+<h2 id="select-within-select">Select within Select</h2>
+
+<p><strong>Show the countries in Europe with a per capita GDP greater than &lsquo;United Kingdom&rsquo;.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">WHERE</span>  <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Europe&#39;</span> 
+       <span class="k">AND</span> <span class="n">gdp</span> <span class="o">/</span> <span class="n">population</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">gdp</span> <span class="o">/</span> <span class="n">population</span> 
+                               <span class="k">FROM</span>   <span class="n">world</span> 
+                               <span class="k">WHERE</span>  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;United Kingdom&#39;</span><span class="p">)</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Andorra</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Austria</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Belgium</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Denmark</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Finland</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>France</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Iceland</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Ireland</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Liechtenstein</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Luxembourg</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Monaco</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Netherlands</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Norway</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>San Marino</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Sweden</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Switzerland</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>List the name and continent of countries in the continents containing either Argentina or Australia. Order by name of the country.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> 
+       <span class="n">continent</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">WHERE</span>  <span class="n">continent</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">continent</span> 
+                     <span class="k">FROM</span>   <span class="n">world</span> 
+                     <span class="k">WHERE</span>  <span class="n">name</span> <span class="k">IN</span><span class="p">(</span> <span class="s1">&#39;Argentina&#39;</span><span class="p">,</span> <span class="s1">&#39;Australia&#39;</span> <span class="p">))</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">name</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>continent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Argentina</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Australia</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Bolivia</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Brazil</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Chile</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colombia</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Ecuador</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Fiji</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Guyana</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Kiribati</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Marshall Islands</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Micronesia, Federated States of</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Nauru</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>New Zealand</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Palau</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Papua New Guinea</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Paraguay</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Peru</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Saint Vincent and the Grenadines</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Samoa</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Solomon Islands</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Suriname</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Tonga</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Tuvalu</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Uruguay</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Vanuatu</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Venezuela</td>
+      <td>South America</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Which country has a population that is more than Canada but less than Poland? Show the name and the population.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> 
+       <span class="n">population</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">WHERE</span>  <span class="n">population</span> <span class="k">BETWEEN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">population</span> 
+                           <span class="k">FROM</span>   <span class="n">world</span> 
+                           <span class="k">WHERE</span>  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Canada&#39;</span><span class="p">)</span> 
+                          <span class="o">+</span> <span class="mi">1</span> <span class="k">AND</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">population</span> 
+                                   <span class="k">FROM</span>   <span class="n">world</span> 
+                                   <span class="k">WHERE</span>  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Poland&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> </code></pre></div>
+<p>As BETWEEN range is inclusive of boundary values, adjusted range to get desired output.</p>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Iraq</td>
+      <td>36004552</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Sudan</td>
+      <td>37289406</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Germany (population 80 million) has the largest population of the countries in Europe. Austria (population 8.5 million) has 11% of the population of Germany. Show the name and the population of big ten countries in Europe. Show the population as a percentage of the population of Germany.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> 
+       <span class="n">ROUND</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">population</span> <span class="o">/</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">population</span> 
+                                 <span class="k">FROM</span>   <span class="n">world</span> 
+                                 <span class="k">WHERE</span>  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Germany&#39;</span><span class="p">))</span> <span class="k">AS</span> <span class="n">percetile_pop</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">WHERE</span>  <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Europe&#39;</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">percetile_pop</span> <span class="k">DESC</span> 
+<span class="k">LIMIT</span>  <span class="mi">10</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>percetile_pop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Germany</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>France</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>United Kingdom</td>
+      <td>79</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Italy</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Spain</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Ukraine</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Poland</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Romania</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Netherlands</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Greece</td>
+      <td>14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Which countries have a GDP greater than every country in Europe? (Some countries may have NULL gdp values)</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">WHERE</span>  <span class="n">gdp</span> <span class="o">&gt;</span> <span class="k">ALL</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">gdp</span> 
+                  <span class="k">FROM</span>   <span class="n">world</span> 
+                  <span class="k">WHERE</span>  <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Europe&#39;</span> 
+                         <span class="k">AND</span> <span class="n">gdp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>China</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Japan</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>United States</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><code>ALL</code> allow to use &gt;= or &gt; or &lt; or &lt;= to act over a list.</p>
+
+<p><strong>Find the largest country (by area) in each continent, show the continent, the name and the area</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">continent</span><span class="p">,</span> 
+       <span class="n">name</span><span class="p">,</span> 
+       <span class="n">area</span> 
+<span class="k">FROM</span>   <span class="n">world</span> <span class="n">x</span> 
+<span class="k">WHERE</span>  <span class="n">area</span> <span class="o">&gt;=</span> <span class="k">ALL</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">area</span> 
+                    <span class="k">FROM</span>   <span class="n">world</span> <span class="n">y</span> 
+                    <span class="k">WHERE</span>  <span class="n">y</span><span class="p">.</span><span class="n">continent</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">continent</span> 
+                           <span class="k">AND</span> <span class="n">area</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continent</th>
+      <th>name</th>
+      <th>area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>2381741</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Oceania</td>
+      <td>Australia</td>
+      <td>7692024</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>South America</td>
+      <td>Brazil</td>
+      <td>8515767</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>North America</td>
+      <td>Canada</td>
+      <td>9984670</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Asia</td>
+      <td>China</td>
+      <td>9596961</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Caribbean</td>
+      <td>Cuba</td>
+      <td>109884</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Europe</td>
+      <td>France</td>
+      <td>640679</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Eurasia</td>
+      <td>Russia</td>
+      <td>17125242</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>List each continent and the name of the country that comes first alphabetically.</strong></p>
+
+<p>We can refer outer SELECT values within inside inner SELECT. Here we have named the outer table as <code>x</code> and inner as <code>y</code>, in order to compare their values.</p>
+
+<p>The inner SELECT gives list of area of a continent countries. Using <code>ALL</code> outer SELECT find out the country with largest area in a continent.</p>
+
+<p>Using <code>ALL</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">continent</span><span class="p">,</span> 
+       <span class="n">name</span> 
+<span class="k">FROM</span>   <span class="n">world</span> <span class="n">x</span> 
+<span class="k">WHERE</span>  <span class="n">name</span> <span class="o">&lt;=</span> <span class="k">ALL</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">name</span> 
+                    <span class="k">FROM</span>   <span class="n">world</span> <span class="n">y</span> 
+                    <span class="k">WHERE</span>  <span class="n">x</span><span class="p">.</span><span class="n">continent</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="n">continent</span><span class="p">)</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continent</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Asia</td>
+      <td>Afghanistan</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Europe</td>
+      <td>Albania</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Caribbean</td>
+      <td>Antigua and Barbuda</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>South America</td>
+      <td>Argentina</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Eurasia</td>
+      <td>Armenia</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Oceania</td>
+      <td>Australia</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>North America</td>
+      <td>Belize</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Using <code>GROUP BY</code> and <code>MIN</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">continent</span><span class="p">,</span> 
+       <span class="k">MIN</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">GROUP</span>  <span class="k">BY</span> <span class="n">continent</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">continent</span><span class="p">;</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continent</th>
+      <th>MIN(name)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Asia</td>
+      <td>Afghanistan</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Caribbean</td>
+      <td>Antigua and Barbuda</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Eurasia</td>
+      <td>Armenia</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Europe</td>
+      <td>Albania</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>North America</td>
+      <td>Belize</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Oceania</td>
+      <td>Australia</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>South America</td>
+      <td>Argentina</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>**Find the continents where all countries have a population &lt;= 25000000. Then find the names of the countries associated with these continents. Show name, continent and population. **</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> 
+       <span class="n">continent</span><span class="p">,</span> 
+       <span class="n">population</span> 
+<span class="k">FROM</span>   <span class="n">world</span> <span class="n">x</span> 
+<span class="k">WHERE</span>  <span class="mi">25000000</span> <span class="o">&gt;=</span> <span class="k">ALL</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">population</span> 
+                        <span class="k">FROM</span>   <span class="n">world</span> <span class="n">y</span> 
+                        <span class="k">WHERE</span>  <span class="n">x</span><span class="p">.</span><span class="n">continent</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="n">continent</span><span class="p">)</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>continent</th>
+      <th>population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Antigua and Barbuda</td>
+      <td>Caribbean</td>
+      <td>86295</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>23545500</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Bahamas</td>
+      <td>Caribbean</td>
+      <td>351461</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Barbados</td>
+      <td>Caribbean</td>
+      <td>285000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Cuba</td>
+      <td>Caribbean</td>
+      <td>11167325</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Dominica</td>
+      <td>Caribbean</td>
+      <td>71293</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Dominican Republic</td>
+      <td>Caribbean</td>
+      <td>9445281</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Fiji</td>
+      <td>Oceania</td>
+      <td>858038</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Grenada</td>
+      <td>Caribbean</td>
+      <td>103328</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Haiti</td>
+      <td>Caribbean</td>
+      <td>10413211</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Jamaica</td>
+      <td>Caribbean</td>
+      <td>2717991</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Kiribati</td>
+      <td>Oceania</td>
+      <td>106461</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Marshall Islands</td>
+      <td>Oceania</td>
+      <td>56086</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Micronesia, Federated States of</td>
+      <td>Oceania</td>
+      <td>101351</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Nauru</td>
+      <td>Oceania</td>
+      <td>9945</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>New Zealand</td>
+      <td>Oceania</td>
+      <td>4538520</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Palau</td>
+      <td>Oceania</td>
+      <td>20901</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Papua New Guinea</td>
+      <td>Oceania</td>
+      <td>7398500</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Saint Lucia</td>
+      <td>Caribbean</td>
+      <td>180000</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Samoa</td>
+      <td>Oceania</td>
+      <td>187820</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Solomon Islands</td>
+      <td>Oceania</td>
+      <td>581344</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Tonga</td>
+      <td>Oceania</td>
+      <td>103036</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Trinidad and Tobago</td>
+      <td>Caribbean</td>
+      <td>1328019</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Tuvalu</td>
+      <td>Oceania</td>
+      <td>11323</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Vanuatu</td>
+      <td>Oceania</td>
+      <td>264652</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Some countries have populations more than three times that of any of their neighbours (in the same continent). Give the countries and continents.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> 
+       <span class="n">continent</span> 
+<span class="k">FROM</span>   <span class="n">world</span> <span class="n">x</span> 
+<span class="k">WHERE</span>  <span class="n">population</span> <span class="o">&gt;</span> <span class="k">ALL</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">population</span> <span class="o">*</span> <span class="mi">3</span> 
+                         <span class="k">FROM</span>   <span class="n">world</span> <span class="n">y</span> 
+                         <span class="k">WHERE</span>  <span class="n">x</span><span class="p">.</span><span class="n">continent</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="n">continent</span> 
+                                <span class="k">AND</span> <span class="n">x</span><span class="p">.</span><span class="n">name</span> <span class="o">!=</span> <span class="n">y</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>                             </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>continent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Australia</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brazil</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Russia</td>
+      <td>Eurasia</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial">https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial</a></li>
+<li><a href="http://www.dpriver.com/pp/sqlformat.htm">http://www.dpriver.com/pp/sqlformat.htm</a></li>
+</ul>
 
         </div>
     </div>

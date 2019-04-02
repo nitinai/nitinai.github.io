@@ -6,17 +6,39 @@
     <description>Recent content on Nitin Patil</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Mar 2019 19:14:46 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 31 Mar 2019 18:05:20 +0530</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Image Classification</title>
+      <link>/machine_learning/image_classification/</link>
+      <pubDate>Sun, 31 Mar 2019 18:05:20 +0530</pubDate>
+      
+      <guid>/machine_learning/image_classification/</guid>
+      <description>Image Classification is a task of assigning an input image one label from a fixed set of categories. Many Computer Vision tasks (such as object detection, segmentation) can be reduced to image classification.
+For computer images are 3-dimensional arrays of integers from 0 (black) to 255 (white) representing brightness, of size [Width x Height x 3]. The 3 represents the three color channels Red, Green, Blue.
+The task in Image Classification is to predict a single label (or a distribution over labels as shown here to indicate our confidence) for a given image.</description>
+    </item>
+    
+    <item>
+      <title>Image Classification</title>
+      <link>/machine_learning/k-nearest_neighbor_classifier/</link>
+      <pubDate>Sun, 31 Mar 2019 18:05:20 +0530</pubDate>
+      
+      <guid>/machine_learning/k-nearest_neighbor_classifier/</guid>
+      <description>To understand the algorithm let&amp;rsquo;s consider a problem of image classification, in which we have an image of 32 x 32 x 3 pixel and want to assign a single label from a fixed set of categories.
+Nearest Neighbor Classifier The learning step of nearest neighbor classifier is very simple. It just stores all the dataset to compare with test image.
+To predict it takes a test image, compare it to every single one of the training images, and predict the label of the closest training image.</description>
+    </item>
+    
+    <item>
       <title>Alter table</title>
-      <link>/sql/alter-table/</link>
+      <link>/sql/alter_table/</link>
       <pubDate>Fri, 29 Mar 2019 19:14:46 +0530</pubDate>
       
-      <guid>/sql/alter-table/</guid>
+      <guid>/sql/alter_table/</guid>
       <description>The ALTER TABLE statement is used to add, delete, or modify columns in an existing table. It is also used to add and drop various constraints on an existing table.
 Current state CREATE TABLE student( student_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30) NOT NULL, last_name VARCHAR(30) NOT NULL);SHOW TABLES[(&amp;#39;student&amp;#39;,)]DESCRIBE student  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .</description>
     </item>
@@ -47,6 +69,16 @@ DROP TABLE IF EXISTS dept_manager, titles, salaries, employees, departments; Dro
     </item>
     
     <item>
+      <title>Select</title>
+      <link>/sql/select/</link>
+      <pubDate>Fri, 29 Mar 2019 19:14:46 +0530</pubDate>
+      
+      <guid>/sql/select/</guid>
+      <description>Select first 5 records of table
+SELECT * FROM world LIMIT 5  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }    name continent area population gdp capital tld flag     0 Afghanistan Asia 652230 25500100 20364000000 Kabul .af //upload.wikimedia.org/wikipedia/commons/a/a8/...   1 Albania Europe 28748 2821977 12044000000 Tirana .</description>
+    </item>
+    
+    <item>
       <title>Union</title>
       <link>/sql/union/</link>
       <pubDate>Wed, 13 Feb 2019 18:10:00 +0530</pubDate>
@@ -65,20 +97,11 @@ DROP TABLE IF EXISTS dept_manager, titles, salaries, employees, departments; Dro
     </item>
     
     <item>
-      <title>Select where</title>
-      <link>/sql/select/</link>
-      <pubDate>Wed, 13 Feb 2019 18:05:20 +0530</pubDate>
-      
-      <guid>/sql/select/</guid>
-      <description>SELECT * FROM world  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }    country continent area population gdp     0 Afghanistan Asia 647500 31056997 700   1 India Asia 3287590 1095351995 2900   2 China Asia 9596960 1313973713 5000   3 United States North America 9631420 298444215 37800   4 Brazil South America 8511965 188078227 7600   5 South Africa Africa 1219912 44187637 10700   6 France Europe 547030 60876136 27600     Select Where -- get all Asian countries SELECT * from world where continent = &amp;#39;Asia&amp;#39;  .</description>
-    </item>
-    
-    <item>
       <title>Create table</title>
-      <link>/sql/create-table/</link>
+      <link>/sql/create_table/</link>
       <pubDate>Tue, 12 Feb 2019 19:44:49 +0530</pubDate>
       
-      <guid>/sql/create-table/</guid>
+      <guid>/sql/create_table/</guid>
       <description>-- create table world  CREATE TABLE world ( -- column, datatype, constraint  country VARCHAR(25) NOT NULL PRIMARY KEY, continent VARCHAR(25) NOT NULL, area INT NOT NULL, population INT, gdp INT )-- Get all column names and their data types from table  SELECT COLUMN_NAME, DATA_TYPE from master.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N&amp;#39;world&amp;#39; -- Use &amp;#34;N&amp;#34; for handlling unicode string like varchar in ANSI(32bit) and nvarchar in unicode(64bit)   .</description>
     </item>
     
@@ -111,6 +134,17 @@ Decision Trees are a non-parametric supervised learning method used for classifi
       <guid>/machine_learning/ensemble_random_forest/</guid>
       <description>Ensemble An ensemble is a set of elements that collectively contribute to a whole. A familiar example is a musical ensemble, which blends the sounds of several musical instruments to create harmony, or architectural ensembles. In ensembles, the (whole) harmonious outcome is more important than the performance of any individual part.
 In machine learning the goal of ensembling is to combine the predictions of several base estimators built with a given learning algorithm in order to improve generalizability / robustness over a single estimator.</description>
+    </item>
+    
+    <item>
+      <title>Explore Nobel Laureates data</title>
+      <link>/sql/nobel/</link>
+      <pubDate>Fri, 25 Jan 2019 19:14:46 +0530</pubDate>
+      
+      <guid>/sql/nobel/</guid>
+      <description>Here we will create a SQL table from external kaggle dataset of Nobel Laureates. It is available in csv format.
+Connect with SQL database import sqlalchemy as db import pandas as pd# Create an engine to the `test` database # The typical form of a database URL is `dialect+driver://username:password@host:port/database` engine = db.create_engine(&amp;#39;mysql+pymysql://root:root@localhost:3306/test&amp;#39;)# Print the table names engine.table_names()[&amp;#39;student_data&amp;#39;, &amp;#39;world&amp;#39;] Handy function for future use.
+def ex_df(query): &amp;#34;&amp;#34;&amp;#34;Execute query and return result in pandas.</description>
     </item>
     
     <item>

@@ -3,7 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/sql/alter-table/</loc>
+    <loc>/machine_learning/image_classification/</loc>
+    <lastmod>2019-03-31T18:05:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/machine_learning/k-nearest_neighbor_classifier/</loc>
+    <lastmod>2019-03-31T18:05:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sql/alter_table/</loc>
     <lastmod>2019-03-29T19:14:46+05:30</lastmod>
   </url>
   
@@ -18,6 +28,11 @@
   </url>
   
   <url>
+    <loc>/sql/select/</loc>
+    <lastmod>2019-03-29T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/sql/union/</loc>
     <lastmod>2019-02-13T18:10:00+05:30</lastmod>
   </url>
@@ -28,12 +43,7 @@
   </url>
   
   <url>
-    <loc>/sql/select/</loc>
-    <lastmod>2019-02-13T18:05:20+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/sql/create-table/</loc>
+    <loc>/sql/create_table/</loc>
     <lastmod>2019-02-12T19:44:49+05:30</lastmod>
   </url>
   
@@ -49,6 +59,11 @@
   
   <url>
     <loc>/machine_learning/ensemble_random_forest/</loc>
+    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sql/nobel/</loc>
     <lastmod>2019-01-25T19:14:46+05:30</lastmod>
   </url>
   
@@ -119,7 +134,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-03-29T19:14:46+05:30</lastmod>
+    <lastmod>2019-03-31T18:05:20+05:30</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135109602-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135109602-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    Explore Nobel Laureates data | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/syntax.css">
+
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              TeX: { extensions: ["autobold.js"]
+                    },
+              MathML: {
+                    extensions: ["mml3.js", "content-mathml.js"]
+                    },
+              tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] }
+            });
+        </script>
+
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Explore Nobel Laureates data</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-01-25T19:14:46&#43;05:30'>
+                                January 25, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<p>Here we will create a SQL table from external <a href="https://www.kaggle.com/nobelfoundation/nobel-laureates/">kaggle dataset of Nobel Laureates</a>. It is available in csv format.</p>
+
+<h3 id="connect-with-sql-database">Connect with SQL database</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="kn">as</span> <span class="nn">db</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Create an engine to the `test` database</span>
+<span class="c1"># The typical form of a database URL is `dialect+driver://username:password@host:port/database`</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;mysql+pymysql://root:root@localhost:3306/test&#39;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Print the table names</span>
+<span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;student_data&#39;, &#39;world&#39;]</pre></div>
+<p>Handy function for future use.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">ex_df</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Execute query and return result in pandas.DataFrame&#34;&#34;&#34;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span></code></pre></div>
+<h3 id="create-table-from-external-csv">Create table from external csv</h3>
+
+<p>Read csv file</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df_nobel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&#34;./nobel_laureates/archive.csv&#34;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df_nobel</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Category</th>
+      <th>Prize</th>
+      <th>Motivation</th>
+      <th>Prize Share</th>
+      <th>Laureate ID</th>
+      <th>Laureate Type</th>
+      <th>Full Name</th>
+      <th>Birth Date</th>
+      <th>Birth City</th>
+      <th>Birth Country</th>
+      <th>Sex</th>
+      <th>Organization Name</th>
+      <th>Organization City</th>
+      <th>Organization Country</th>
+      <th>Death Date</th>
+      <th>Death City</th>
+      <th>Death Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1901</td>
+      <td>Chemistry</td>
+      <td>The Nobel Prize in Chemistry 1901</td>
+      <td>"in recognition of the extraordinary services ...</td>
+      <td>1/1</td>
+      <td>160</td>
+      <td>Individual</td>
+      <td>Jacobus Henricus van 't Hoff</td>
+      <td>1852-08-30</td>
+      <td>Rotterdam</td>
+      <td>Netherlands</td>
+      <td>Male</td>
+      <td>Berlin University</td>
+      <td>Berlin</td>
+      <td>Germany</td>
+      <td>1911-03-01</td>
+      <td>Berlin</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1901</td>
+      <td>Literature</td>
+      <td>The Nobel Prize in Literature 1901</td>
+      <td>"in special recognition of his poetic composit...</td>
+      <td>1/1</td>
+      <td>569</td>
+      <td>Individual</td>
+      <td>Sully Prudhomme</td>
+      <td>1839-03-16</td>
+      <td>Paris</td>
+      <td>France</td>
+      <td>Male</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1907-09-07</td>
+      <td>Châtenay</td>
+      <td>France</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>The dataset has column names with space. It would be difficult to refer such columns in sql. Hence remove those space and keep all columns in lowercase.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df_nobel</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">df_nobel</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span></code></pre></div>
+<p>Create a SQL tabel with name <code>nobel</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df_nobel</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s1">&#39;nobel&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;nobel&#39;, &#39;student_data&#39;, &#39;world&#39;]</pre></div>
+<p><strong>View top two records</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">LIMIT</span>  <span class="mi">2</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>category</th>
+      <th>prize</th>
+      <th>motivation</th>
+      <th>prize_share</th>
+      <th>laureate_id</th>
+      <th>laureate_type</th>
+      <th>full_name</th>
+      <th>birth_date</th>
+      <th>birth_city</th>
+      <th>birth_country</th>
+      <th>sex</th>
+      <th>organization_name</th>
+      <th>organization_city</th>
+      <th>organization_country</th>
+      <th>death_date</th>
+      <th>death_city</th>
+      <th>death_country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1901</td>
+      <td>Chemistry</td>
+      <td>The Nobel Prize in Chemistry 1901</td>
+      <td>"in recognition of the extraordinary services ...</td>
+      <td>1/1</td>
+      <td>160</td>
+      <td>Individual</td>
+      <td>Jacobus Henricus van 't Hoff</td>
+      <td>1852-08-30</td>
+      <td>Rotterdam</td>
+      <td>Netherlands</td>
+      <td>Male</td>
+      <td>Berlin University</td>
+      <td>Berlin</td>
+      <td>Germany</td>
+      <td>1911-03-01</td>
+      <td>Berlin</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1901</td>
+      <td>Literature</td>
+      <td>The Nobel Prize in Literature 1901</td>
+      <td>"in special recognition of his poetic composit...</td>
+      <td>1/1</td>
+      <td>569</td>
+      <td>Individual</td>
+      <td>Sully Prudhomme</td>
+      <td>1839-03-16</td>
+      <td>Paris</td>
+      <td>France</td>
+      <td>Male</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>1907-09-07</td>
+      <td>Châtenay</td>
+      <td>France</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Change data type of date columns to DATE</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">nobel</span> 
+  <span class="k">MODIFY</span> <span class="n">birth_date</span> <span class="nb">DATE</span><span class="p">;</span>
+  
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">nobel</span>
+  <span class="k">MODIFY</span> <span class="n">death_date</span> <span class="nb">DATE</span><span class="p">;</span></code></pre></div>
+<p>Check nobel table columns and their details</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">DESCRIBE</span> <span class="n">nobel</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Null</th>
+      <th>Key</th>
+      <th>Default</th>
+      <th>Extra</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>year</td>
+      <td>year(4)</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>category</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>prize</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>motivation</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>prize_share</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>laureate_id</td>
+      <td>bigint(20)</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>laureate_type</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>full_name</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>birth_date</td>
+      <td>date</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>birth_city</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>birth_country</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>sex</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>organization_name</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>organization_city</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>organization_country</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>death_date</td>
+      <td>date</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>death_city</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>death_country</td>
+      <td>text</td>
+      <td>YES</td>
+      <td></td>
+      <td>None</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>View last two records of table.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="k">year</span> <span class="k">DESC</span> 
+<span class="k">LIMIT</span>  <span class="mi">2</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>category</th>
+      <th>prize</th>
+      <th>motivation</th>
+      <th>prize_share</th>
+      <th>laureate_id</th>
+      <th>laureate_type</th>
+      <th>full_name</th>
+      <th>birth_date</th>
+      <th>birth_city</th>
+      <th>birth_country</th>
+      <th>sex</th>
+      <th>organization_name</th>
+      <th>organization_city</th>
+      <th>organization_country</th>
+      <th>death_date</th>
+      <th>death_city</th>
+      <th>death_country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2016</td>
+      <td>Chemistry</td>
+      <td>The Nobel Prize in Chemistry 2016</td>
+      <td>"for the design and synthesis of molecular mac...</td>
+      <td>1/3</td>
+      <td>931</td>
+      <td>Individual</td>
+      <td>Jean-Pierre Sauvage</td>
+      <td>1944-10-21</td>
+      <td>Paris</td>
+      <td>France</td>
+      <td>Male</td>
+      <td>University of Strasbourg</td>
+      <td>Strasbourg</td>
+      <td>France</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2016</td>
+      <td>Chemistry</td>
+      <td>The Nobel Prize in Chemistry 2016</td>
+      <td>"for the design and synthesis of molecular mac...</td>
+      <td>1/3</td>
+      <td>932</td>
+      <td>Individual</td>
+      <td>Sir J. Fraser Stoddart</td>
+      <td>1942-05-24</td>
+      <td>Edinburgh</td>
+      <td>United Kingdom</td>
+      <td>Male</td>
+      <td>Northwestern University</td>
+      <td>Evanston, IL</td>
+      <td>United States of America</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="who-are-the-living-nobel-laureate">Who are the living nobel laureate</h3>
+
+<p>There are some records with early 19 with death_date as none. Seem like it is incomplete information as those records even does not have birth_date. So I will consider the laureate as living if they have birth entry but not death entry.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">year</span><span class="p">,</span> 
+       <span class="n">full_name</span><span class="p">,</span> 
+       <span class="n">birth_date</span><span class="p">,</span> 
+       <span class="n">ROUND</span><span class="p">(</span><span class="n">DATEDIFF</span><span class="p">(</span><span class="n">NOW</span><span class="p">(),</span> <span class="n">birth_date</span><span class="p">)</span> <span class="o">/</span> <span class="mi">365</span><span class="p">.</span><span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">AS</span> <span class="n">Age</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">WHERE</span>  <span class="n">birth_date</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span> 
+       <span class="k">AND</span> <span class="n">death_date</span> <span class="k">IS</span> <span class="k">NULL</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">age</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>full_name</th>
+      <th>birth_date</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2001</td>
+      <td>A. Michael Spence</td>
+      <td>1943-00-00</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2014</td>
+      <td>Malala Yousafzai</td>
+      <td>1997-07-12</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011</td>
+      <td>Tawakkol Karman</td>
+      <td>1979-02-07</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2010</td>
+      <td>Konstantin Novoselov</td>
+      <td>1974-08-23</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2011</td>
+      <td>Leymah Gbowee</td>
+      <td>1972-02-01</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2011</td>
+      <td>Adam G. Riess</td>
+      <td>1969-12-16</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2011</td>
+      <td>Adam G. Riess</td>
+      <td>1969-12-16</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2011</td>
+      <td>Brian P. Schmidt</td>
+      <td>1967-02-24</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2014</td>
+      <td>Stefan W. Hell</td>
+      <td>1962-12-23</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2014</td>
+      <td>Stefan W. Hell</td>
+      <td>1962-12-23</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2014</td>
+      <td>May-Britt Moser</td>
+      <td>1963-01-04</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2001</td>
+      <td>Eric A. Cornell</td>
+      <td>1961-12-19</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2012</td>
+      <td>Shinya Yamanaka</td>
+      <td>1962-09-04</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2012</td>
+      <td>Shinya Yamanaka</td>
+      <td>1962-09-04</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2014</td>
+      <td>Edvard I. Moser</td>
+      <td>1962-04-27</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2006</td>
+      <td>Craig C. Mello</td>
+      <td>1960-10-19</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2009</td>
+      <td>Carol W. Greider</td>
+      <td>1961-04-15</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2009</td>
+      <td>Barack H. Obama</td>
+      <td>1961-08-04</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2014</td>
+      <td>Eric Betzig</td>
+      <td>1960-01-13</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2014</td>
+      <td>Hiroshi Amano</td>
+      <td>1960-09-11</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>1992</td>
+      <td>Rigoberta Menchú Tum</td>
+      <td>1959-01-09</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2002</td>
+      <td>Koichi Tanaka</td>
+      <td>1959-08-03</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2006</td>
+      <td>Andrew Z. Fire</td>
+      <td>1959-04-27</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2010</td>
+      <td>Andre Geim</td>
+      <td>1958-10-21</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2015</td>
+      <td>Takaaki Kajita</td>
+      <td>1959-03-09</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2001</td>
+      <td>Wolfgang Ketterle</td>
+      <td>1957-10-21</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2011</td>
+      <td>Bruce A. Beutler</td>
+      <td>1957-12-29</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2011</td>
+      <td>Bruce A. Beutler</td>
+      <td>1957-12-29</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2003</td>
+      <td>Roderick MacKinnon</td>
+      <td>1956-02-19</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2003</td>
+      <td>Roderick MacKinnon</td>
+      <td>1956-02-19</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>293</th>
+      <td>1990</td>
+      <td>Harry M. Markowitz</td>
+      <td>1927-08-24</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>294</th>
+      <td>1994</td>
+      <td>George A. Olah</td>
+      <td>1927-05-22</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>295</th>
+      <td>2002</td>
+      <td>Vernon L. Smith</td>
+      <td>1927-01-01</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>296</th>
+      <td>2002</td>
+      <td>Sydney Brenner</td>
+      <td>1927-01-13</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>297</th>
+      <td>1975</td>
+      <td>Ben Roy Mottelson</td>
+      <td>1926-07-09</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>298</th>
+      <td>1980</td>
+      <td>Paul Berg</td>
+      <td>1926-06-30</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>299</th>
+      <td>1982</td>
+      <td>Aaron Klug</td>
+      <td>1926-08-11</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>300</th>
+      <td>2000</td>
+      <td>Paul Greengard</td>
+      <td>1925-12-11</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>301</th>
+      <td>2002</td>
+      <td>Masatoshi Koshiba</td>
+      <td>1926-09-19</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>302</th>
+      <td>1973</td>
+      <td>Leo Esaki</td>
+      <td>1925-03-12</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>303</th>
+      <td>2002</td>
+      <td>Jimmy Carter</td>
+      <td>1924-10-01</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>304</th>
+      <td>2005</td>
+      <td>Roy J. Glauber</td>
+      <td>1925-09-01</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>305</th>
+      <td>1974</td>
+      <td>Antony Hewish</td>
+      <td>1924-05-11</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>306</th>
+      <td>1977</td>
+      <td>Roger Guillemin</td>
+      <td>1924-01-11</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>307</th>
+      <td>1977</td>
+      <td>Philip Warren Anderson</td>
+      <td>1923-12-13</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>308</th>
+      <td>1981</td>
+      <td>Torsten N. Wiesel</td>
+      <td>1924-06-03</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>309</th>
+      <td>1987</td>
+      <td>Robert M. Solow</td>
+      <td>1924-08-23</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>310</th>
+      <td>1973</td>
+      <td>Henry A. Kissinger</td>
+      <td>1923-05-27</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>311</th>
+      <td>1986</td>
+      <td>Stanley Cohen</td>
+      <td>1922-11-17</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>312</th>
+      <td>1992</td>
+      <td>Rudolph A. Marcus</td>
+      <td>1923-07-21</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>313</th>
+      <td>2000</td>
+      <td>Arvid Carlsson</td>
+      <td>1923-01-25</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>314</th>
+      <td>1957</td>
+      <td>Chen Ning Yang</td>
+      <td>1922-09-22</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <th>315</th>
+      <td>1988</td>
+      <td>Leon M. Lederman</td>
+      <td>1922-07-15</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <th>316</th>
+      <td>1989</td>
+      <td>Hans G. Dehmelt</td>
+      <td>1922-09-09</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <th>317</th>
+      <td>1972</td>
+      <td>Kenneth J. Arrow</td>
+      <td>1921-08-23</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>318</th>
+      <td>1988</td>
+      <td>Jack Steinberger</td>
+      <td>1921-05-25</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>319</th>
+      <td>1981</td>
+      <td>Nicolaas Bloembergen</td>
+      <td>1920-03-11</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <th>320</th>
+      <td>1992</td>
+      <td>Edmond H. Fischer</td>
+      <td>1920-04-06</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <th>321</th>
+      <td>1997</td>
+      <td>Jens C. Skou</td>
+      <td>1918-10-08</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>322</th>
+      <td>1997</td>
+      <td>Paul D. Boyer</td>
+      <td>1918-07-31</td>
+      <td>101</td>
+    </tr>
+  </tbody>
+</table>
+<p>323 rows × 4 columns</p>
+</div>
+
+<h3 id="data-correction">Data correction</h3>
+
+<p>Laureate A. Michael Spence has wrong birth date. Lets correct it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="n">nobel</span> 
+<span class="k">SET</span>    <span class="n">birth_date</span> <span class="o">=</span> <span class="s1">&#39;1943-11-07&#39;</span> 
+<span class="k">WHERE</span>  <span class="n">full_name</span> <span class="o">=</span> <span class="s1">&#39;A. Michael Spence&#39;</span> </code></pre></div>
+<p>Check if it is updated.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">year</span><span class="p">,</span> 
+       <span class="n">full_name</span><span class="p">,</span> 
+       <span class="n">birth_date</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">WHERE</span>  <span class="n">full_name</span> <span class="o">=</span> <span class="s1">&#39;A. Michael Spence&#39;</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>full_name</th>
+      <th>birth_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2001</td>
+      <td>A. Michael Spence</td>
+      <td>1943-11-07</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Also some of the entries are repeated as some laureates got more than one nobel prize.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">q</span> <span class="o">=</span><span class="s2">&#34;&#34;&#34;SELECT DISTINCT year, full_name, birth_date, 
+</span><span class="s2">ROUND(DATEDIFF(NOW(), birth_date)/365.25, 0) AS Age 
+</span><span class="s2">FROM nobel
+</span><span class="s2">WHERE birth_date IS NOT NULL AND death_date IS NULL
+</span><span class="s2">ORDER BY Age DESC
+</span><span class="s2">&#34;&#34;&#34;</span>
+<span class="n">ex_df</span><span class="p">(</span><span class="n">q</span><span class="p">)</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>full_name</th>
+      <th>birth_date</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1997</td>
+      <td>Paul D. Boyer</td>
+      <td>1918-07-31</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1997</td>
+      <td>Jens C. Skou</td>
+      <td>1918-10-08</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1981</td>
+      <td>Nicolaas Bloembergen</td>
+      <td>1920-03-11</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1992</td>
+      <td>Edmond H. Fischer</td>
+      <td>1920-04-06</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1972</td>
+      <td>Kenneth J. Arrow</td>
+      <td>1921-08-23</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1988</td>
+      <td>Jack Steinberger</td>
+      <td>1921-05-25</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1957</td>
+      <td>Chen Ning Yang</td>
+      <td>1922-09-22</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1988</td>
+      <td>Leon M. Lederman</td>
+      <td>1922-07-15</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1989</td>
+      <td>Hans G. Dehmelt</td>
+      <td>1922-09-09</td>
+      <td>97</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1973</td>
+      <td>Henry A. Kissinger</td>
+      <td>1923-05-27</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1986</td>
+      <td>Stanley Cohen</td>
+      <td>1922-11-17</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1992</td>
+      <td>Rudolph A. Marcus</td>
+      <td>1923-07-21</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2000</td>
+      <td>Arvid Carlsson</td>
+      <td>1923-01-25</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1974</td>
+      <td>Antony Hewish</td>
+      <td>1924-05-11</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1977</td>
+      <td>Philip Warren Anderson</td>
+      <td>1923-12-13</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1977</td>
+      <td>Roger Guillemin</td>
+      <td>1924-01-11</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1981</td>
+      <td>Torsten N. Wiesel</td>
+      <td>1924-06-03</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1987</td>
+      <td>Robert M. Solow</td>
+      <td>1924-08-23</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1973</td>
+      <td>Leo Esaki</td>
+      <td>1925-03-12</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2002</td>
+      <td>Jimmy Carter</td>
+      <td>1924-10-01</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2005</td>
+      <td>Roy J. Glauber</td>
+      <td>1925-09-01</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>1975</td>
+      <td>Ben Roy Mottelson</td>
+      <td>1926-07-09</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>1980</td>
+      <td>Paul Berg</td>
+      <td>1926-06-30</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1982</td>
+      <td>Aaron Klug</td>
+      <td>1926-08-11</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2000</td>
+      <td>Paul Greengard</td>
+      <td>1925-12-11</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2002</td>
+      <td>Masatoshi Koshiba</td>
+      <td>1926-09-19</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>1957</td>
+      <td>Tsung-Dao (T.D.) Lee</td>
+      <td>1926-11-24</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>1967</td>
+      <td>Manfred Eigen</td>
+      <td>1927-05-09</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>1977</td>
+      <td>Andrew V. Schally</td>
+      <td>1926-11-30</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>1987</td>
+      <td>K. Alexander Müller</td>
+      <td>1927-04-20</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>260</th>
+      <td>2014</td>
+      <td>Kailash Satyarthi</td>
+      <td>1954-01-11</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>261</th>
+      <td>2014</td>
+      <td>Shuji Nakamura</td>
+      <td>1954-05-22</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>262</th>
+      <td>2012</td>
+      <td>Brian K. Kobilka</td>
+      <td>1955-05-30</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>263</th>
+      <td>2012</td>
+      <td>Mo Yan</td>
+      <td>1955-02-02</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>264</th>
+      <td>2003</td>
+      <td>Roderick MacKinnon</td>
+      <td>1956-02-19</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>265</th>
+      <td>2010</td>
+      <td>Liu Xiaobo</td>
+      <td>1955-12-28</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>266</th>
+      <td>2013</td>
+      <td>Thomas C. Südhof</td>
+      <td>1955-12-22</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>267</th>
+      <td>2001</td>
+      <td>Wolfgang Ketterle</td>
+      <td>1957-10-21</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>268</th>
+      <td>2011</td>
+      <td>Bruce A. Beutler</td>
+      <td>1957-12-29</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>269</th>
+      <td>1992</td>
+      <td>Rigoberta Menchú Tum</td>
+      <td>1959-01-09</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>270</th>
+      <td>2002</td>
+      <td>Koichi Tanaka</td>
+      <td>1959-08-03</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>271</th>
+      <td>2006</td>
+      <td>Andrew Z. Fire</td>
+      <td>1959-04-27</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>272</th>
+      <td>2010</td>
+      <td>Andre Geim</td>
+      <td>1958-10-21</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>273</th>
+      <td>2015</td>
+      <td>Takaaki Kajita</td>
+      <td>1959-03-09</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>274</th>
+      <td>2014</td>
+      <td>Eric Betzig</td>
+      <td>1960-01-13</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>275</th>
+      <td>2014</td>
+      <td>Hiroshi Amano</td>
+      <td>1960-09-11</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <th>276</th>
+      <td>2006</td>
+      <td>Craig C. Mello</td>
+      <td>1960-10-19</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>277</th>
+      <td>2009</td>
+      <td>Barack H. Obama</td>
+      <td>1961-08-04</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>2009</td>
+      <td>Carol W. Greider</td>
+      <td>1961-04-15</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>279</th>
+      <td>2001</td>
+      <td>Eric A. Cornell</td>
+      <td>1961-12-19</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>280</th>
+      <td>2012</td>
+      <td>Shinya Yamanaka</td>
+      <td>1962-09-04</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>281</th>
+      <td>2014</td>
+      <td>Edvard I. Moser</td>
+      <td>1962-04-27</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>282</th>
+      <td>2014</td>
+      <td>May-Britt Moser</td>
+      <td>1963-01-04</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>283</th>
+      <td>2014</td>
+      <td>Stefan W. Hell</td>
+      <td>1962-12-23</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>284</th>
+      <td>2011</td>
+      <td>Brian P. Schmidt</td>
+      <td>1967-02-24</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>285</th>
+      <td>2011</td>
+      <td>Adam G. Riess</td>
+      <td>1969-12-16</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>286</th>
+      <td>2011</td>
+      <td>Leymah Gbowee</td>
+      <td>1972-02-01</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>287</th>
+      <td>2010</td>
+      <td>Konstantin Novoselov</td>
+      <td>1974-08-23</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>288</th>
+      <td>2011</td>
+      <td>Tawakkol Karman</td>
+      <td>1979-02-07</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>289</th>
+      <td>2014</td>
+      <td>Malala Yousafzai</td>
+      <td>1997-07-12</td>
+      <td>22</td>
+    </tr>
+  </tbody>
+</table>
+<p>290 rows × 4 columns</p>
+</div>
+
+<p>There are multiple laureates who are no more, but database is not updated. e.g. Paul D. Boyer died on 2 June 2018 <a href="https://en.wikipedia.org/wiki/Paul_D._Boyer">wikipedia</a>. Let&rsquo;s update records for top few.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">UPDATE</span> <span class="n">nobel</span> 
+<span class="k">SET</span>    <span class="n">death_date</span> <span class="o">=</span> <span class="k">CASE</span> <span class="n">full_name</span> 
+                      <span class="k">WHEN</span> <span class="s1">&#39;Paul D. Boyer&#39;</span> <span class="k">THEN</span> <span class="s1">&#39;2018-06-02&#39;</span> 
+                      <span class="k">WHEN</span> <span class="s1">&#39;Jens C. Skou&#39;</span> <span class="k">THEN</span> <span class="s1">&#39;2018-05-28&#39;</span> 
+                      <span class="k">WHEN</span> <span class="s1">&#39;Nicolaas Bloembergen&#39;</span> <span class="k">THEN</span> <span class="s1">&#39;2017-09-05&#39;</span> 
+                      <span class="k">WHEN</span> <span class="s1">&#39;Kenneth J. Arrow&#39;</span> <span class="k">THEN</span> <span class="s1">&#39;2017-02-21&#39;</span> 
+                      <span class="k">WHEN</span> <span class="s1">&#39;Leon M. Lederman&#39;</span> <span class="k">THEN</span> <span class="s1">&#39;2018-10-03&#39;</span> 
+                      <span class="k">ELSE</span> <span class="n">death_date</span> 
+                    <span class="k">END</span> 
+<span class="k">WHERE</span>  <span class="n">full_name</span> <span class="k">IN</span> <span class="p">(</span> <span class="s1">&#39;Paul D. Boyer&#39;</span><span class="p">,</span> <span class="s1">&#39;Jens C. Skou&#39;</span><span class="p">,</span> <span class="s1">&#39;Nicolaas Bloembergen&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;Kenneth J. Arrow&#39;</span><span class="p">,</span> <span class="s1">&#39;Leon M. Lederman&#39;</span> <span class="p">)</span></code></pre></div>
+<p>Check if those values got updated</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">year</span><span class="p">,</span> 
+       <span class="n">full_name</span><span class="p">,</span> 
+       <span class="n">birth_date</span><span class="p">,</span> 
+       <span class="n">death_date</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">WHERE</span>  <span class="n">full_name</span> <span class="k">IN</span> <span class="p">(</span> <span class="s1">&#39;Paul D. Boyer&#39;</span><span class="p">,</span> <span class="s1">&#39;Jens C. Skou&#39;</span><span class="p">,</span> <span class="s1">&#39;Nicolaas Bloembergen&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;Kenneth J. Arrow&#39;</span><span class="p">,</span> <span class="s1">&#39;Leon M. Lederman&#39;</span> <span class="p">)</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>full_name</th>
+      <th>birth_date</th>
+      <th>death_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1972</td>
+      <td>Kenneth J. Arrow</td>
+      <td>1921-08-23</td>
+      <td>2017-02-21</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1981</td>
+      <td>Nicolaas Bloembergen</td>
+      <td>1920-03-11</td>
+      <td>2017-09-05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1988</td>
+      <td>Leon M. Lederman</td>
+      <td>1922-07-15</td>
+      <td>2018-10-03</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1997</td>
+      <td>Paul D. Boyer</td>
+      <td>1918-07-31</td>
+      <td>2018-06-02</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1997</td>
+      <td>Jens C. Skou</td>
+      <td>1918-10-08</td>
+      <td>2018-05-28</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre class="chroma">Ideally I should write an utility to scrap wikipedia page for laureate and find if he/she is alive and update the records accrodingly.</pre></div>
+<h3 id="indian-nobel-laureates">Indian Nobel laureates</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">full_name</span><span class="p">,</span> 
+       <span class="k">year</span><span class="p">,</span> 
+       <span class="n">category</span><span class="p">,</span> 
+       <span class="n">motivation</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">WHERE</span>  <span class="n">birth_country</span> <span class="o">=</span> <span class="s1">&#39;India&#39;</span> 
+        <span class="k">OR</span> <span class="n">organization_country</span> <span class="o">=</span> <span class="s1">&#39;India&#39;</span> 
+        <span class="k">OR</span> <span class="n">death_country</span> <span class="o">=</span> <span class="s1">&#39;India&#39;</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>full_name</th>
+      <th>year</th>
+      <th>category</th>
+      <th>motivation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ronald Ross</td>
+      <td>1902</td>
+      <td>Medicine</td>
+      <td>"for his work on malaria, by which he has show...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Rabindranath Tagore</td>
+      <td>1913</td>
+      <td>Literature</td>
+      <td>"because of his profoundly sensitive, fresh an...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sir Chandrasekhara Venkata Raman</td>
+      <td>1930</td>
+      <td>Physics</td>
+      <td>"for his work on the scattering of light and f...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Har Gobind Khorana</td>
+      <td>1968</td>
+      <td>Medicine</td>
+      <td>"for their interpretation of the genetic code ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Mother Teresa</td>
+      <td>1979</td>
+      <td>Peace</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Amartya Sen</td>
+      <td>1998</td>
+      <td>Economics</td>
+      <td>"for his contributions to welfare economics"</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Venkatraman Ramakrishnan</td>
+      <td>2009</td>
+      <td>Chemistry</td>
+      <td>"for studies of the structure and function of ...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Kailash Satyarthi</td>
+      <td>2014</td>
+      <td>Peace</td>
+      <td>"for their struggle against the suppression of...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Knights of the realm. List the winners, year and category where the winner starts with Sir.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">full_name</span><span class="p">,</span> 
+       <span class="k">year</span><span class="p">,</span> 
+       <span class="n">category</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">WHERE</span>  <span class="n">full_name</span> <span class="k">LIKE</span> <span class="p">(</span> <span class="s1">&#39;Sir%&#39;</span> <span class="p">)</span> </code></pre></div>
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="https://nitinai.github.io/sql/sqlalchemy_pandas/">Database operations with python</a></li>
+<li><a href="https://www.kaggle.com/nobelfoundation/nobel-laureates/">kaggle dataset of Nobel Laureates</a></li>
+</ul>
+
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135109602-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135109602-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    Image Classification | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/syntax.css">
+
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              TeX: { extensions: ["autobold.js"]
+                    },
+              MathML: {
+                    extensions: ["mml3.js", "content-mathml.js"]
+                    },
+              tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] }
+            });
+        </script>
+
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Image Classification</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-03-31T18:05:20&#43;05:30'>
+                                March 31, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<p>Image Classification is a task of assigning an input image one label from a fixed set of categories. Many Computer Vision tasks (such as object detection, segmentation) can be reduced to image classification.</p>
+
+<p>For computer images are 3-dimensional arrays of integers from 0 (black) to 255 (white) representing brightness, of size [Width x Height x 3]. The 3 represents the three color channels Red, Green, Blue.</p>
+
+<p><img src="cat.jpg" alt="cat" /></p>
+<div class="highlight"><pre class="chroma">The task in Image Classification is to predict a single label (or a distribution over labels as shown here to indicate our confidence) for a given image.</pre></div>
+<h2 id="challeges-for-vision-algorithm">Challeges for vision algorithm</h2>
+
+<p><img src="challenges.jpg" alt="challenges" /></p>
+
+<ul>
+<li><p><strong>Viewpoint variation</strong> - Image can be oriented in many ways with respect to the camera.</p></li>
+
+<li><p><strong>Scale variation</strong> - Visual classes often exhibit variation in their size.</p></li>
+
+<li><p><strong>Deformation</strong> - Many objects of interest are not rigid bodies and can be deformed in extreme ways. e.g. cat</p></li>
+
+<li><p><strong>Occlusion</strong> - Sometimes only a small portion of an object (as little as few pixels) could be visible.</p></li>
+
+<li><p><strong>Illumination conditions</strong> - As pixel represents the brightness value the effects of illumination are drastic on the pixel level.</p></li>
+
+<li><p><strong>Background clutter</strong> - The objects of interest may blend into their environment, making them hard to identify.</p></li>
+
+<li><p><strong>Intra-class variation</strong> - The classes of interest can often be relatively broad, such as chair. There are many different types of these objects, each with their own appearance.</p></li>
+</ul>
+
+<p>A good image classification model must be invariant to the cross product of all these variations, while simultaneously retaining sensitivity to the inter-class variations.</p>
+
+<h2 id="image-classification-pipeline">Image classification pipeline</h2>
+
+<p><img src="classes.jpg" alt="classes" /></p>
+
+<p>Our goal is to build an image classifier which would correctly label an image identifying the object it contains.</p>
+
+<ul>
+<li><p><strong>Data collection</strong> - first accumulate a dataset of $N$ images, each labeled with one of $K$ different classes. This would be our training set.</p></li>
+
+<li><p><strong>Learning</strong> - Given the training set to algorithm, it will learn how every one of the classes looks like.</p></li>
+
+<li><p><strong>Evaluation</strong> - Now it&rsquo;s a exam time of a classifier. We give a new set of unseen images to a model and ask to predict their labels. Compare the predicted labels with the true labels. Expectation is that a lot of predictions should match up with the true answers (which we call the ground truth).</p></li>
+</ul>
+
+<h2 id="data-set">Data set</h2>
+
+<p>One popular toy image classification dataset is the <a href="http://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10 dataset</a>.</p>
+
+<p>$N$ = 60,000 images</p>
+
+<p>$image\, size = [32 x 32 x 3]$</p>
+
+<p>$K$ = 10 classes like airplane, automobile, bird, etc</p>
+
+<p>There are differenet machine learning algorithms which we can train to classify images. Each algorithm gives different performence. We will start to explore them all starting from <a href="/machine_learning/k-nearest_neighbor_classifier/">k-Nearest Neighbor</a>, <a href="/machine_learning/linear_classification/">Linear classification</a> to Neural network.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="http://cs231n.github.io/classification/">http://cs231n.github.io/classification/</a></li>
+</ul>
+
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>

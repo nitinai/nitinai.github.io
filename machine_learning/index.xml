@@ -12,6 +12,28 @@
     
     
     <item>
+      <title>Image Classification</title>
+      <link>/machine_learning/image_classification/</link>
+      <pubDate>Sun, 31 Mar 2019 18:05:20 +0530</pubDate>
+      
+      <guid>/machine_learning/image_classification/</guid>
+      <description>Image Classification is a task of assigning an input image one label from a fixed set of categories. Many Computer Vision tasks (such as object detection, segmentation) can be reduced to image classification.
+For computer images are 3-dimensional arrays of integers from 0 (black) to 255 (white) representing brightness, of size [Width x Height x 3]. The 3 represents the three color channels Red, Green, Blue.
+The task in Image Classification is to predict a single label (or a distribution over labels as shown here to indicate our confidence) for a given image.</description>
+    </item>
+    
+    <item>
+      <title>Image Classification</title>
+      <link>/machine_learning/k-nearest_neighbor_classifier/</link>
+      <pubDate>Sun, 31 Mar 2019 18:05:20 +0530</pubDate>
+      
+      <guid>/machine_learning/k-nearest_neighbor_classifier/</guid>
+      <description>To understand the algorithm let&amp;rsquo;s consider a problem of image classification, in which we have an image of 32 x 32 x 3 pixel and want to assign a single label from a fixed set of categories.
+Nearest Neighbor Classifier The learning step of nearest neighbor classifier is very simple. It just stores all the dataset to compare with test image.
+To predict it takes a test image, compare it to every single one of the training images, and predict the label of the closest training image.</description>
+    </item>
+    
+    <item>
       <title>Decision tree algorithm</title>
       <link>/machine_learning/decision_tree_algorithm/</link>
       <pubDate>Fri, 25 Jan 2019 19:14:46 +0530</pubDate>
