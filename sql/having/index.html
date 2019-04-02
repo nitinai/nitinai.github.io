@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135109602-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135109602-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    Having | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/syntax.css">
+
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              TeX: { extensions: ["autobold.js"]
+                    },
+              MathML: {
+                    extensions: ["mml3.js", "content-mathml.js"]
+                    },
+              tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] }
+            });
+        </script>
+
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Having</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-03-29T19:14:46&#43;05:30'>
+                                March 29, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<p><strong>The tables we have</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SHOW</span> <span class="n">TABLES</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tables_in_test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>nobel</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- format
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="k">table_name</span>
+<span class="k">WHERE</span> <span class="n">condition</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">HAVING</span> <span class="n">condition</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">);</span></code></pre></div>
+<p><strong>The laureate who won more than one nobel prize</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">full_name</span><span class="p">,</span> 
+       <span class="k">COUNT</span><span class="p">(</span><span class="k">year</span><span class="p">)</span> <span class="k">AS</span> <span class="n">prize_count</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">GROUP</span>  <span class="k">BY</span> <span class="n">full_name</span> 
+<span class="k">HAVING</span> <span class="n">prize_count</span> <span class="o">&gt;</span> <span class="mi">1</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">prize_count</span> <span class="k">DESC</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>full_name</th>
+      <th>prize_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Jack W. Szostak</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Comité international de la Croix Rouge (Intern...</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adolf Friedrich Johann Butenandt</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Fritz Albert Lipmann</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Office of the United Nations High Commissioner...</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Kurt Wüthrich</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Barry J. Marshall</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Thomas C. Südhof</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Abdus Salam</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Finn E. Kydland</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Thomas A. Steitz</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Dale T. Mortensen</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Tomas Lindahl</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Marie Curie, née Sklodowska</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Carl Bosch</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Walther Bothe</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Rudolf Ludwig Mössbauer</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Ilya Prigogine</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Georges Charpak</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Edward C. Prescott</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Albert Fert</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Charles Kuen Kao</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Saul Perlmutter</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Paul Modrich</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Friedrich Bergius</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Richard Kuhn</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Linus Carl Pauling</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Elinor Ostrom</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Shinya Yamanaka</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Antonio Caetano de Abreu Freire Egas Moniz</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Roderick MacKinnon</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Osamu Shimomura</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Bruce A. Beutler</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Adam G. Riess</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Paul Ehrlich</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Petrus (Peter) Josephus Wilhelmus Debye</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Hermann Staudinger</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>John Franklin Enders</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Claude Cohen-Tannoudji</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>John L. Hall</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Mario R. Capecchi</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Robert J. Lefkowitz</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Serge Haroche</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Stefan W. Hell</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>William Parry Murphy</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Hideki Yukawa</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Igor Yevgenyevich Tamm</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Günter Blobel</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Theodor W. Hänsch</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Roger Y. Tsien</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>David J. Wineland</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Isamu Akasaki</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>John Bardeen</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>Frederick Sanger</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>Il´ja Mikhailovich Frank</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>Christian de Duve</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>Toshihide Maskawa</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>Alvin E. Roth</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>Martin Karplus</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>Randy W. Schekman</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p>63 rows × 2 columns</p>
+</div>
+
+<p><a href="https://fr.wikipedia.org/wiki/Comit%C3%A9_international_de_la_Croix-Rouge">Comité international de la Croix Rouge</a> (International Committee of the Red Cross) has won three nobel.</p>
+
+<p>But wikipedia page of <a href="https://en.wikipedia.org/wiki/Jack_W._Szostak">Jack W. Szostak</a> says he won nobel once in 2009 and not three times. So do we have duplicates in our table.</p>
+
+<h3 id="duplicate-rows-in-table">Duplicate rows in table</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- for each name from inner query print info 
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="k">year</span><span class="p">,</span> 
+       <span class="n">category</span><span class="p">,</span> 
+       <span class="n">laureate_id</span><span class="p">,</span> 
+       <span class="n">full_name</span><span class="p">,</span> 
+       <span class="n">birth_date</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">WHERE</span>  <span class="n">full_name</span> <span class="k">IN</span> <span class="p">(</span> 
+                    <span class="c1">-- gives list of names for which duplicates are present 
+</span><span class="c1"></span>                    <span class="k">SELECT</span> <span class="n">full_name</span> 
+                     <span class="k">FROM</span>   <span class="n">nobel</span> 
+                     <span class="k">GROUP</span>  <span class="k">BY</span> <span class="k">year</span><span class="p">,</span> 
+                               <span class="n">full_name</span> 
+                     <span class="k">HAVING</span> <span class="k">Count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>category</th>
+      <th>laureate_id</th>
+      <th>full_name</th>
+      <th>birth_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1908</td>
+      <td>Medicine</td>
+      <td>302</td>
+      <td>Paul Ehrlich</td>
+      <td>1854-03-14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1908</td>
+      <td>Medicine</td>
+      <td>302</td>
+      <td>Paul Ehrlich</td>
+      <td>1854-03-14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1931</td>
+      <td>Chemistry</td>
+      <td>189</td>
+      <td>Carl Bosch</td>
+      <td>1874-08-27</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1931</td>
+      <td>Chemistry</td>
+      <td>189</td>
+      <td>Carl Bosch</td>
+      <td>1874-08-27</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1931</td>
+      <td>Chemistry</td>
+      <td>190</td>
+      <td>Friedrich Bergius</td>
+      <td>1884-10-11</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1931</td>
+      <td>Chemistry</td>
+      <td>190</td>
+      <td>Friedrich Bergius</td>
+      <td>1884-10-11</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1934</td>
+      <td>Medicine</td>
+      <td>328</td>
+      <td>William Parry Murphy</td>
+      <td>1892-02-06</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1934</td>
+      <td>Medicine</td>
+      <td>328</td>
+      <td>William Parry Murphy</td>
+      <td>1892-02-06</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1936</td>
+      <td>Chemistry</td>
+      <td>195</td>
+      <td>Petrus (Peter) Josephus Wilhelmus Debye</td>
+      <td>1884-03-24</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1936</td>
+      <td>Chemistry</td>
+      <td>195</td>
+      <td>Petrus (Peter) Josephus Wilhelmus Debye</td>
+      <td>1884-03-24</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1938</td>
+      <td>Chemistry</td>
+      <td>198</td>
+      <td>Richard Kuhn</td>
+      <td>1900-12-03</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1938</td>
+      <td>Chemistry</td>
+      <td>198</td>
+      <td>Richard Kuhn</td>
+      <td>1900-12-03</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1939</td>
+      <td>Chemistry</td>
+      <td>199</td>
+      <td>Adolf Friedrich Johann Butenandt</td>
+      <td>1903-03-24</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1939</td>
+      <td>Chemistry</td>
+      <td>199</td>
+      <td>Adolf Friedrich Johann Butenandt</td>
+      <td>1903-03-24</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1949</td>
+      <td>Medicine</td>
+      <td>348</td>
+      <td>Antonio Caetano de Abreu Freire Egas Moniz</td>
+      <td>1874-11-29</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1949</td>
+      <td>Medicine</td>
+      <td>348</td>
+      <td>Antonio Caetano de Abreu Freire Egas Moniz</td>
+      <td>1874-11-29</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1949</td>
+      <td>Physics</td>
+      <td>54</td>
+      <td>Hideki Yukawa</td>
+      <td>1907-01-23</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1949</td>
+      <td>Physics</td>
+      <td>54</td>
+      <td>Hideki Yukawa</td>
+      <td>1907-01-23</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1953</td>
+      <td>Chemistry</td>
+      <td>216</td>
+      <td>Hermann Staudinger</td>
+      <td>1881-03-23</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>1953</td>
+      <td>Chemistry</td>
+      <td>216</td>
+      <td>Hermann Staudinger</td>
+      <td>1881-03-23</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>1953</td>
+      <td>Medicine</td>
+      <td>355</td>
+      <td>Fritz Albert Lipmann</td>
+      <td>1899-06-12</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>1953</td>
+      <td>Medicine</td>
+      <td>355</td>
+      <td>Fritz Albert Lipmann</td>
+      <td>1899-06-12</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>1954</td>
+      <td>Medicine</td>
+      <td>356</td>
+      <td>John Franklin Enders</td>
+      <td>1897-02-10</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1954</td>
+      <td>Medicine</td>
+      <td>356</td>
+      <td>John Franklin Enders</td>
+      <td>1897-02-10</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>1954</td>
+      <td>Physics</td>
+      <td>62</td>
+      <td>Walther Bothe</td>
+      <td>1891-01-08</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>1954</td>
+      <td>Physics</td>
+      <td>62</td>
+      <td>Walther Bothe</td>
+      <td>1891-01-08</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>1956</td>
+      <td>Medicine</td>
+      <td>361</td>
+      <td>Werner Forssmann</td>
+      <td>1904-08-29</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>1956</td>
+      <td>Medicine</td>
+      <td>361</td>
+      <td>Werner Forssmann</td>
+      <td>1904-08-29</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>1958</td>
+      <td>Physics</td>
+      <td>71</td>
+      <td>Igor Yevgenyevich Tamm</td>
+      <td>1895-07-08</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>1958</td>
+      <td>Physics</td>
+      <td>71</td>
+      <td>Igor Yevgenyevich Tamm</td>
+      <td>1895-07-08</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>2011</td>
+      <td>Medicine</td>
+      <td>861</td>
+      <td>Bruce A. Beutler</td>
+      <td>1957-12-29</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>2011</td>
+      <td>Medicine</td>
+      <td>861</td>
+      <td>Bruce A. Beutler</td>
+      <td>1957-12-29</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>2011</td>
+      <td>Physics</td>
+      <td>864</td>
+      <td>Saul Perlmutter</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>88</th>
+      <td>2011</td>
+      <td>Physics</td>
+      <td>864</td>
+      <td>Saul Perlmutter</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>2011</td>
+      <td>Physics</td>
+      <td>866</td>
+      <td>Adam G. Riess</td>
+      <td>1969-12-16</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>2011</td>
+      <td>Physics</td>
+      <td>866</td>
+      <td>Adam G. Riess</td>
+      <td>1969-12-16</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>2012</td>
+      <td>Chemistry</td>
+      <td>878</td>
+      <td>Robert J. Lefkowitz</td>
+      <td>1943-04-15</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>2012</td>
+      <td>Chemistry</td>
+      <td>878</td>
+      <td>Robert J. Lefkowitz</td>
+      <td>1943-04-15</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>2012</td>
+      <td>Economics</td>
+      <td>882</td>
+      <td>Alvin E. Roth</td>
+      <td>1951-12-18</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>2012</td>
+      <td>Economics</td>
+      <td>882</td>
+      <td>Alvin E. Roth</td>
+      <td>1951-12-18</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>2012</td>
+      <td>Medicine</td>
+      <td>875</td>
+      <td>Shinya Yamanaka</td>
+      <td>1962-09-04</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>2012</td>
+      <td>Medicine</td>
+      <td>875</td>
+      <td>Shinya Yamanaka</td>
+      <td>1962-09-04</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>2012</td>
+      <td>Physics</td>
+      <td>876</td>
+      <td>Serge Haroche</td>
+      <td>1944-09-11</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>2012</td>
+      <td>Physics</td>
+      <td>876</td>
+      <td>Serge Haroche</td>
+      <td>1944-09-11</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>2012</td>
+      <td>Physics</td>
+      <td>877</td>
+      <td>David J. Wineland</td>
+      <td>1944-02-24</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>2012</td>
+      <td>Physics</td>
+      <td>877</td>
+      <td>David J. Wineland</td>
+      <td>1944-02-24</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>2013</td>
+      <td>Chemistry</td>
+      <td>889</td>
+      <td>Martin Karplus</td>
+      <td>1930-03-15</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>2013</td>
+      <td>Chemistry</td>
+      <td>889</td>
+      <td>Martin Karplus</td>
+      <td>1930-03-15</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>2013</td>
+      <td>Medicine</td>
+      <td>885</td>
+      <td>Randy W. Schekman</td>
+      <td>1948-12-30</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>2013</td>
+      <td>Medicine</td>
+      <td>885</td>
+      <td>Randy W. Schekman</td>
+      <td>1948-12-30</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>2013</td>
+      <td>Medicine</td>
+      <td>886</td>
+      <td>Thomas C. Südhof</td>
+      <td>1955-12-22</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>2013</td>
+      <td>Medicine</td>
+      <td>886</td>
+      <td>Thomas C. Südhof</td>
+      <td>1955-12-22</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>2014</td>
+      <td>Chemistry</td>
+      <td>910</td>
+      <td>Stefan W. Hell</td>
+      <td>1962-12-23</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>2014</td>
+      <td>Chemistry</td>
+      <td>910</td>
+      <td>Stefan W. Hell</td>
+      <td>1962-12-23</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>2014</td>
+      <td>Physics</td>
+      <td>906</td>
+      <td>Isamu Akasaki</td>
+      <td>1929-01-30</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>2014</td>
+      <td>Physics</td>
+      <td>906</td>
+      <td>Isamu Akasaki</td>
+      <td>1929-01-30</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>2015</td>
+      <td>Chemistry</td>
+      <td>921</td>
+      <td>Tomas Lindahl</td>
+      <td>1938-01-28</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>2015</td>
+      <td>Chemistry</td>
+      <td>921</td>
+      <td>Tomas Lindahl</td>
+      <td>1938-01-28</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>2015</td>
+      <td>Chemistry</td>
+      <td>922</td>
+      <td>Paul Modrich</td>
+      <td>1946-06-13</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>2015</td>
+      <td>Chemistry</td>
+      <td>922</td>
+      <td>Paul Modrich</td>
+      <td>1946-06-13</td>
+    </tr>
+  </tbody>
+</table>
+<p>115 rows × 5 columns</p>
+</div>
+
+<p>Yes we have many duplicate entries.</p>
+
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="https://www.w3schools.com/sql/sql_having.asp">https://www.w3schools.com/sql/sql_having.asp</a></li>
+<li><a href="https://www.kaggle.com/nobelfoundation/nobel-laureates/">kaggle dataset of Nobel Laureates</a></li>
+</ul>
+
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>

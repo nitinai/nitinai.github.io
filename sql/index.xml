@@ -47,6 +47,26 @@ DROP TABLE IF EXISTS dept_manager, titles, salaries, employees, departments; Dro
     </item>
     
     <item>
+      <title>Group by</title>
+      <link>/sql/group_by/</link>
+      <pubDate>Fri, 29 Mar 2019 19:14:46 +0530</pubDate>
+      
+      <guid>/sql/group_by/</guid>
+      <description>The tables we have
+SHOW TABLES  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }    Tables_in_test     0 nobel   1 world     GROUP BY is used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns.</description>
+    </item>
+    
+    <item>
+      <title>Having</title>
+      <link>/sql/having/</link>
+      <pubDate>Fri, 29 Mar 2019 19:14:46 +0530</pubDate>
+      
+      <guid>/sql/having/</guid>
+      <description>The tables we have
+SHOW TABLES  .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }    Tables_in_test     0 nobel     -- format SELECT column_name(s) FROM table_name WHERE condition GROUP BY column_name(s) HAVING condition ORDER BY column_name(s); The laureate who won more than one nobel prize</description>
+    </item>
+    
+    <item>
       <title>Select</title>
       <link>/sql/select/</link>
       <pubDate>Fri, 29 Mar 2019 19:14:46 +0530</pubDate>

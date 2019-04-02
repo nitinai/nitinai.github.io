@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135109602-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135109602-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    Group by | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/syntax.css">
+
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              TeX: { extensions: ["autobold.js"]
+                    },
+              MathML: {
+                    extensions: ["mml3.js", "content-mathml.js"]
+                    },
+              tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] }
+            });
+        </script>
+
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Group by</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-03-29T19:14:46&#43;05:30'>
+                                March 29, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<p><strong>The tables we have</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SHOW</span> <span class="n">TABLES</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tables_in_test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>nobel</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>world</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>GROUP BY is used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- format
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="k">table_name</span>
+<span class="k">WHERE</span> <span class="n">condition</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">);</span></code></pre></div>
+<p><strong>Number of countries in each continent</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">continent</span><span class="p">,</span> 
+       <span class="k">COUNT</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">GROUP</span>  <span class="k">BY</span> <span class="n">continent</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continent</th>
+      <th>COUNT(name)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Asia</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Europe</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Africa</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Caribbean</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>South America</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Eurasia</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Oceania</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>North America</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>List each continent and the name of the country that comes first alphabetically.</strong></p>
+
+<p>Using <code>GROUP BY</code> and <code>MIN</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">continent</span><span class="p">,</span> 
+       <span class="k">MIN</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">GROUP</span>  <span class="k">BY</span> <span class="n">continent</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">continent</span><span class="p">;</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>continent</th>
+      <th>MIN(name)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Asia</td>
+      <td>Afghanistan</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Caribbean</td>
+      <td>Antigua and Barbuda</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Eurasia</td>
+      <td>Armenia</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Europe</td>
+      <td>Albania</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>North America</td>
+      <td>Belize</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Oceania</td>
+      <td>Australia</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>South America</td>
+      <td>Argentina</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Top ten nobel prize winner countries</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">birth_country</span><span class="p">,</span> 
+       <span class="k">COUNT</span><span class="p">(</span><span class="n">birth_country</span><span class="p">)</span> <span class="k">AS</span> <span class="n">prize_count</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">WHERE</span>  <span class="n">birth_country</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span> 
+<span class="k">GROUP</span>  <span class="k">BY</span> <span class="n">birth_country</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">prize_count</span> <span class="k">DESC</span> 
+<span class="k">LIMIT</span>  <span class="mi">10</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>birth_country</th>
+      <th>nobel_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>United States of America</td>
+      <td>276</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>United Kingdom</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Germany</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>France</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Sweden</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Japan</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Russia</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Netherlands</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Italy</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Canada</td>
+      <td>18</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Number of nobel laureates born in particular month</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">Month</span><span class="p">(</span><span class="n">birth_date</span><span class="p">)</span> <span class="k">AS</span> <span class="s1">&#39;month&#39;</span><span class="p">,</span> 
+       <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> 
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">GROUP</span>  <span class="k">BY</span> <span class="k">month</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="k">month</span> </code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Month</th>
+      <th>COUNT(*)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.0</td>
+      <td>65</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3.0</td>
+      <td>77</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4.0</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>5.0</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>6.0</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>7.0</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>8.0</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>9.0</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>10.0</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>11.0</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>12.0</td>
+      <td>82</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Looks like the data has wrong incorrect birth date information for 30 laureates. Lets check.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">year</span><span class="p">,</span> <span class="n">full_name</span><span class="p">,</span> <span class="n">birth_date</span>
+<span class="k">FROM</span> <span class="n">nobel</span>
+<span class="k">WHERE</span> <span class="k">Month</span><span class="p">(</span><span class="n">birth_date</span><span class="p">)</span> <span class="k">IS</span> <span class="k">NULL</span>
+      <span class="k">OR</span> <span class="k">Month</span><span class="p">(</span><span class="n">birth_date</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">0</span></code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>full_name</th>
+      <th>birth_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1904</td>
+      <td>Institut de droit international (Institute of ...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1910</td>
+      <td>Bureau international permanent de la Paix (Per...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1917</td>
+      <td>Comité international de la Croix Rouge (Intern...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1938</td>
+      <td>Office international Nansen pour les Réfugiés ...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1944</td>
+      <td>Comité international de la Croix Rouge (Intern...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1947</td>
+      <td>Friends Service Council (The Quakers)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1947</td>
+      <td>American Friends Service Committee (The Quakers)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1954</td>
+      <td>Office of the United Nations High Commissioner...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1960</td>
+      <td>Albert John Lutuli</td>
+      <td>1898-00-00</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1963</td>
+      <td>Comité international de la Croix Rouge (Intern...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1963</td>
+      <td>Ligue des Sociétés de la Croix-Rouge (League o...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1965</td>
+      <td>United Nations Children's Fund (UNICEF)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1969</td>
+      <td>International Labour Organization (I.L.O.)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1977</td>
+      <td>Amnesty International</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1981</td>
+      <td>Office of the United Nations High Commissioner...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1985</td>
+      <td>International Physicians for the Prevention of...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1988</td>
+      <td>United Nations Peacekeeping Forces</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1995</td>
+      <td>Pugwash Conferences on Science and World Affairs</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1997</td>
+      <td>International Campaign to Ban Landmines (ICBL)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>1999</td>
+      <td>Médecins Sans Frontières</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2001</td>
+      <td>United Nations (U.N.)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2005</td>
+      <td>International Atomic Energy Agency (IAEA)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2006</td>
+      <td>Grameen Bank</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2007</td>
+      <td>Intergovernmental Panel on Climate Change (IPCC)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2009</td>
+      <td>Venkatraman Ramakrishnan</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2011</td>
+      <td>Saul Perlmutter</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2011</td>
+      <td>Saul Perlmutter</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2012</td>
+      <td>European Union (EU)</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2013</td>
+      <td>Organisation for the Prohibition of Chemical W...</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2015</td>
+      <td>National Dialogue Quartet</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>As per <a href="https://en.wikipedia.org/wiki/Albert_Lutuli">wikipedia</a>, Albert John Lutuli does not have exact birth date. And the rest of the records with NULL entries are of organisations. So our Group by query has given correct output</p>
+
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="https://www.w3schools.com/sql/sql_groupby.asp">https://www.w3schools.com/sql/sql_groupby.asp</a></li>
+</ul>
+
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>

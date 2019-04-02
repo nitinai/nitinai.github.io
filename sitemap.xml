@@ -28,6 +28,16 @@
   </url>
   
   <url>
+    <loc>/sql/group_by/</loc>
+    <lastmod>2019-03-29T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sql/having/</loc>
+    <lastmod>2019-03-29T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/sql/select/</loc>
     <lastmod>2019-03-29T19:14:46+05:30</lastmod>
   </url>
