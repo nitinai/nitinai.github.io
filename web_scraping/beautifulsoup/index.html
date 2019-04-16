@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135109602-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135109602-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    Web scraping using BeautifulSoup | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/syntax.css">
+
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              TeX: { extensions: ["autobold.js"]
+                    },
+              MathML: {
+                    extensions: ["mml3.js", "content-mathml.js"]
+                    },
+              tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] }
+            });
+        </script>
+
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">Web scraping using BeautifulSoup</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-03-16T00:00:00Z'>
+                                March 16, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<p>Beautiful Soup is useful for pulling data out of HTML and XML files. It works with html parser to provide idiomatic ways of navigating, searching, and modifying the parse tree.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span></code></pre></div>
+<p>We can directly get a html document from server</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://quotes.toscrape.com/page/1/&#39;</span>
+<span class="c1"># send a http GET reuest to server and get the response</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s2">&#34;html.parser&#34;</span><span class="p">)</span></code></pre></div>
+<p>For this tutorial we are using below simple html made up taking Albert Einstein&rsquo;s quote from <a href="http://quotes.toscrape.com/page/2/">http://quotes.toscrape.com/page/2/</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">html_doc = &#34;&#34;&#34;
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Quotes to Scrape<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;quote&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;textNormal&#34;</span><span class="p">&gt;</span>
+         <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;quote&#34;</span> <span class="na">itemscope</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">itemtype</span><span class="o">=</span><span class="s">&#34;http://schema.org/CreativeWork&#34;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;text&#34;</span><span class="p">&gt;</span>“If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>by <span class="p">&lt;</span><span class="nt">small</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;author&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;author&#34;</span><span class="p">&gt;</span>Albert Einstein<span class="p">&lt;/</span><span class="nt">small</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;tags&#34;</span><span class="p">&gt;</span>
+               Tags:
+               <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;keywords&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;keywords&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;simplicity,understand&#34;</span><span class="p">&gt;</span>
+               <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;tag&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tag/simplicity/page/1/&#34;</span><span class="p">&gt;</span>simplicity<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+               <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;tag&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/tag/understand/page/1/&#34;</span><span class="p">&gt;</span>understand<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+         <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+&#34;&#34;&#34;</code></pre></div>
+<p>Parse a html documnet and create a soup object</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_doc</span><span class="p">,</span> <span class="s2">&#34;html.parser&#34;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">prettify</span><span class="p">())</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;
+   Quotes to Scrape
+  &lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;div class=&#34;textNormal&#34; id=&#34;quote&#34;&gt;
+   &lt;div class=&#34;quote&#34; itemscope=&#34;&#34; itemtype=&#34;http://schema.org/CreativeWork&#34;&gt;
+    &lt;span class=&#34;text&#34; itemprop=&#34;text&#34;&gt;
+     “If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”
+    &lt;/span&gt;
+    &lt;span&gt;
+     by
+     &lt;small class=&#34;author&#34; itemprop=&#34;author&#34;&gt;
+      Albert Einstein
+     &lt;/small&gt;
+    &lt;/span&gt;
+    &lt;div class=&#34;tags&#34;&gt;
+     Tags:
+     &lt;meta class=&#34;keywords&#34; content=&#34;simplicity,understand&#34; itemprop=&#34;keywords&#34;/&gt;
+     &lt;a class=&#34;tag&#34; href=&#34;/tag/simplicity/page/1/&#34;&gt;
+      simplicity
+     &lt;/a&gt;
+     &lt;a class=&#34;tag&#34; href=&#34;/tag/understand/page/1/&#34;&gt;
+      understand
+     &lt;/a&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</pre></div>
+<p>Get title</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">string</span></code></pre></div><div class="highlight"><pre class="chroma">&#39;Quotes to Scrape&#39;</pre></div>
+<p>Find all links</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">len</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">2</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;quote&#39;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;div class=&#34;textNormal&#34; id=&#34;quote&#34;&gt;
+&lt;div class=&#34;quote&#34; itemscope=&#34;&#34; itemtype=&#34;http://schema.org/CreativeWork&#34;&gt;
+&lt;span class=&#34;text&#34; itemprop=&#34;text&#34;&gt;“If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&#34;author&#34; itemprop=&#34;author&#34;&gt;Albert Einstein&lt;/small&gt;
+&lt;/span&gt;
+&lt;div class=&#34;tags&#34;&gt;
+               Tags:
+               &lt;meta class=&#34;keywords&#34; content=&#34;simplicity,understand&#34; itemprop=&#34;keywords&#34;/&gt;
+&lt;a class=&#34;tag&#34; href=&#34;/tag/simplicity/page/1/&#34;&gt;simplicity&lt;/a&gt;
+&lt;a class=&#34;tag&#34; href=&#34;/tag/understand/page/1/&#34;&gt;understand&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</pre></div>
+<p>Extracting all the URLs found within a page’s <code>&lt;a&gt;</code> tags</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">/tag/simplicity/page/1/
+/tag/understand/page/1/</pre></div>
+<p>Extract all the text from page</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># soup.getText()</span>
+<span class="n">soup</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma">&#34;\n\n\n\nQuotes to Scrape\n\n\n\n\n“If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”\nby Albert Einstein\n\n\n               Tags:\n               \nsimplicity\nunderstand\n\n\n\n\n\n&#34;</pre></div>
+<h3 id="tag">Tag</h3>
+
+<p>Can access HTML tags from soup object</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">div</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;div class=&#34;textNormal&#34; id=&#34;quote&#34;&gt;
+&lt;div class=&#34;quote&#34; itemscope=&#34;&#34; itemtype=&#34;http://schema.org/CreativeWork&#34;&gt;
+&lt;span class=&#34;text&#34; itemprop=&#34;text&#34;&gt;“If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”&lt;/span&gt;
+&lt;span&gt;by &lt;small class=&#34;author&#34; itemprop=&#34;author&#34;&gt;Albert Einstein&lt;/small&gt;
+&lt;/span&gt;
+&lt;div class=&#34;tags&#34;&gt;
+               Tags:
+               &lt;meta class=&#34;keywords&#34; content=&#34;simplicity,understand&#34; itemprop=&#34;keywords&#34;/&gt;
+&lt;a class=&#34;tag&#34; href=&#34;/tag/simplicity/page/1/&#34;&gt;simplicity&lt;/a&gt;
+&lt;a class=&#34;tag&#34; href=&#34;/tag/understand/page/1/&#34;&gt;understand&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">a</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;a class=&#34;tag&#34; href=&#34;/tag/simplicity/page/1/&#34;&gt;simplicity&lt;/a&gt;</pre></div>
+<p>Tag has name and number of attributes which can be accessed like dictionary</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">div</span><span class="o">.</span><span class="n">name</span></code></pre></div><div class="highlight"><pre class="chroma">&#39;div&#39;</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">div</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span></code></pre></div><div class="highlight"><pre class="chroma">&#39;quote&#39;</pre></div>
+<h3 id="navigating-using-tag-names">Navigating using tag names</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">title</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;title&gt;Quotes to Scrape&lt;/title&gt;</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">string</span></code></pre></div><div class="highlight"><pre class="chroma">&#39;Quotes to Scrape&#39;</pre></div>
+<p>You can do use this trick again and again to zoom in on a certain part of the parse tree. This code gets the first <code>&lt;b&gt;</code> tag beneath the<code>&lt;body&gt;</code> tag:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">span</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;span class=&#34;text&#34; itemprop=&#34;text&#34;&gt;“If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”&lt;/span&gt;</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">span</span><span class="o">.</span><span class="n">text</span></code></pre></div><div class="highlight"><pre class="chroma">&#34;“If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”&#34;</pre></div>
+<p>Using a tag name as an attribute will give you only the first tag by that name</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">a</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;a class=&#34;tag&#34; href=&#34;/tag/simplicity/page/1/&#34;&gt;simplicity&lt;/a&gt;</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="c1"># to get all the &lt;a&gt; tags</span></code></pre></div><div class="highlight"><pre class="chroma">[&lt;a class=&#34;tag&#34; href=&#34;/tag/simplicity/page/1/&#34;&gt;simplicity&lt;/a&gt;,
+ &lt;a class=&#34;tag&#34; href=&#34;/tag/understand/page/1/&#34;&gt;understand&lt;/a&gt;]</pre></div>
+<p>A tag’s children are available in a list called <code>.contents</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">contents</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;simplicity&#39;]</pre></div>
+<p>iterate over a tag’s children using the <code>.children</code> generator</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">child</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">simplicity</pre></div>
+<p>The <code>.contents</code> and <code>.children</code> attributes only consider a tag’s direct children. For instance, the <code>&lt;head&gt;</code> tag has a single direct child–the <code>&lt;title&gt;</code> tag:</p>
+
+<p>The <code>.descendants</code> attribute lets you iterate over all of a tag’s children, recursively: its direct children, the children of its direct children, and so on:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">head_tag</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">head</span>
+<span class="n">head_tag</span><span class="o">.</span><span class="n">contents</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;\n&#39;, &lt;title&gt;Quotes to Scrape&lt;/title&gt;, &#39;\n&#39;]</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">head_tag</span><span class="o">.</span><span class="n">descendants</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">child</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;title&gt;Quotes to Scrape&lt;/title&gt;
+Quotes to Scrape</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">children</span><span class="p">)),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">descendants</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">(5, 41)</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">title_tag</span> <span class="o">=</span> <span class="n">head_tag</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">title_tag</span></code></pre></div><div class="highlight"><pre class="chroma">&#39;\n&#39;</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">stripped_strings</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">string</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">&#39;Quotes to Scrape&#39;
+&#34;“If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”&#34;
+&#39;by&#39;
+&#39;Albert Einstein&#39;
+&#39;Tags:&#39;
+&#39;simplicity&#39;
+&#39;understand&#39;</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">stripped_strings</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">Quotes to Scrape
+“If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”
+by
+Albert Einstein
+Tags:
+simplicity
+understand</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">story</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;quote&#39;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">story</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">None
+div
+None</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">story</span><span class="o">.</span><span class="n">descendants</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">None
+div
+None
+span
+None
+None
+span
+None
+small
+None
+None
+None
+div
+None
+meta
+None
+a
+None
+None
+a
+None
+None
+None
+None</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;author&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span></code></pre></div><div class="highlight"><pre class="chroma">&#39;Albert Einstein&#39;</pre></div>
+<h4 id="use-decompose-to-remove-the-unwanted-tags">Use <code>decompose</code> to remove the unwanted tags</h4>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">story</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span><span class="s1">&#39;tags&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span></code></pre></div>
+<h3 id="the-quote">The Quote</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">story</span><span class="o">.</span><span class="n">stripped_strings</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">“If you can&#39;t explain it to a six year old, you don&#39;t understand it yourself.”
+by
+Albert Einstein</pre></div>
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">https://www.crummy.com/software/BeautifulSoup/bs4/doc/</a></li>
+</ul>
+
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>

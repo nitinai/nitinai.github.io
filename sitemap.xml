@@ -8,11 +8,6 @@
   </url>
   
   <url>
-    <loc>/web_dev/</loc>
-    <lastmod>2019-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/machine_learning/image_classification/</loc>
     <lastmod>2019-03-31T18:05:20+05:30</lastmod>
   </url>
@@ -50,6 +45,21 @@
   <url>
     <loc>/sql/select/</loc>
     <lastmod>2019-03-29T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/web_scraping/beautifulsoup/</loc>
+    <lastmod>2019-03-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/machine_learning/</loc>
+    <lastmod>2019-03-15T19:14:46+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/sql/</loc>
+    <lastmod>2019-03-10T19:14:46+05:30</lastmod>
   </url>
   
   <url>
@@ -93,17 +103,7 @@
   </url>
   
   <url>
-    <loc>/git/</loc>
-    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
-  </url>
-  
-  <url>
     <loc>/machine_learning/gradient_boosting_machines/</loc>
-    <lastmod>2019-01-25T19:14:46+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/sql/</loc>
     <lastmod>2019-01-25T19:14:46+05:30</lastmod>
   </url>
   
@@ -133,6 +133,16 @@
   </url>
   
   <url>
+    <loc>/web_dev/</loc>
+    <lastmod>2019-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/web_scraping/</loc>
+    <lastmod>2019-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/me/</loc>
     <lastmod>2019-01-01T11:53:49-07:00</lastmod>
   </url>
@@ -143,7 +153,7 @@
   </url>
   
   <url>
-    <loc>/machine_learning/</loc>
+    <loc>/git/</loc>
     <lastmod>2019-01-01T19:14:46+05:30</lastmod>
   </url>
   

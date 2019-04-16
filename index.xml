@@ -113,6 +113,17 @@ SELECT * FROM world LIMIT 5  .dataframe tbody tr th:only-of-type { vertical-alig
     </item>
     
     <item>
+      <title>Web scraping using BeautifulSoup</title>
+      <link>/web_scraping/beautifulsoup/</link>
+      <pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/web_scraping/beautifulsoup/</guid>
+      <description>Beautiful Soup is useful for pulling data out of HTML and XML files. It works with html parser to provide idiomatic ways of navigating, searching, and modifying the parse tree.
+import requests import urllib.request import time from bs4 import BeautifulSoup We can directly get a html document from server
+url = &amp;#39;http://quotes.toscrape.com/page/1/&amp;#39; # send a http GET reuest to server and get the response response = requests.get(url) soup = BeautifulSoup(response.</description>
+    </item>
+    
+    <item>
       <title>Union</title>
       <link>/sql/union/</link>
       <pubDate>Wed, 13 Feb 2019 18:10:00 +0530</pubDate>
