@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135109602-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135109602-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+        <title>
+    JavaScript cheatsheet | Nitin Patil
+</title>
+    
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+        <meta name="generator" content="Hugo 0.53" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        
+        
+        <link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/syntax.css">
+
+        
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+              TeX: { extensions: ["autobold.js"]
+                    },
+              MathML: {
+                    extensions: ["mml3.js", "content-mathml.js"]
+                    },
+              tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] }
+            });
+        </script>
+
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+        </script>
+    
+    </head>
+
+    <body>
+        
+        
+        <section id="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="/">Nitin Patil</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/projects/projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about/me">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        
+        <section id="page-content">
+            
+<page_content>
+    <header>
+        <div class="container">
+            <div class="note-title">
+                <h1 class="title">JavaScript cheatsheet</h1>
+
+                <div class="note-meta">
+                    <div class="date">
+                        <span class="posted-on">
+                                
+                            <i class="fa fa-calendar"></i>
+                            <time datetime='2019-04-16T00:00:00Z'>
+                                April 16, 2019
+                            </time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="post-content">
+            
+
+<p>JavaScript is the programming language of HTML and the Web.</p>
+
+<p>Why Study JavaScript?
+JavaScript is one of the 3 languages all web developers must learn:</p>
+
+<ol>
+<li><p>HTML to define the content of web pages</p></li>
+
+<li><p>CSS to specify the layout of web pages</p></li>
+
+<li><p>JavaScript to program the behavior of web pages</p></li>
+</ol>
+
+<p>Web pages are not the only place where JavaScript is used. Many desktop and server programs use JavaScript. Node.js is the best known. Some databases, like MongoDB and CouchDB, also use JavaScript as their programming language.</p>
+
+<h3 id="on-button-click-change-value-of-html-element">On button click change value of html element</h3>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">p</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;demo&#34;</span><span class="o">&gt;&lt;</span><span class="err">/p&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;button&#34;</span> <span class="nx">onclick</span><span class="o">=</span><span class="s2">&#34;document.getElementById(&#39;demo&#39;).innerHTML = Date()&#34;</span><span class="o">&gt;</span> <span class="nx">Click</span> <span class="nx">me</span> <span class="nx">to</span> <span class="nx">display</span> <span class="nb">Date</span> <span class="nx">and</span> <span class="nx">Time</span><span class="p">.</span> <span class="o">&lt;</span><span class="err">/button&gt;</span>
+</code></pre></div>
+<p><code>getElementById()</code> find an HTML element with id (=&ldquo;demo&rdquo;), then we can change
+- element content by <code>innerHTML</code>
+- changes the value of the attribute e.g. <code>src</code> (source) attribute of an <code>&lt;img&gt;</code> tag</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;myImage&#34;</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;pic_bulboff.gif&#34;</span> <span class="nx">style</span><span class="o">=</span><span class="s2">&#34;width:100px&#34;</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onclick</span><span class="o">=</span><span class="s2">&#34;document.getElementById(&#39;myImage&#39;).src=&#39;pic_bulbon.gif&#39;&#34;</span><span class="o">&gt;</span><span class="nx">Turn</span> <span class="nx">on</span> <span class="nx">the</span> <span class="nx">light</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</code></pre></div>
+<ul>
+<li>Can Change HTML Styles (CSS)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;demo&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span> <span class="o">=</span> <span class="s2">&#34;35px&#34;</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>Can Show/Hide HTML Elements</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;button&#34;</span> <span class="nx">onclick</span><span class="o">=</span><span class="s2">&#34;document.getElementById(&#39;demo&#39;).style.display=&#39;none&#39;&#34;</span><span class="o">&gt;</span><span class="nx">Click</span> <span class="nx">Me</span><span class="o">!&lt;</span><span class="err">/button&gt;</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;demo&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s2">&#34;none&#34;</span><span class="p">;</span> <span class="err">#</span> <span class="nx">hide</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;demo&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s2">&#34;block&#34;</span><span class="p">;</span> <span class="err">#</span><span class="nx">show</span>
+</code></pre></div>
+<h3 id="varabile-declaration">Varabile declaration</h3>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">varName</span> <span class="o">=</span> <span class="nx">value</span>
+<span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;myName&#39;</span><span class="p">,</span> <span class="nx">age</span><span class="o">=</span><span class="mi">30</span>
+
+<span class="kd">var</span> <span class="nx">carName</span> <span class="o">=</span> <span class="s2">&#34;Volvo&#34;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">carName</span><span class="p">;</span> <span class="c1">// re-declaring a variable will not lose its value. 
+</span><span class="c1">// The variable carName will still have the value &#34;Volvo&#34; after the execution of these statements:
+</span><span class="c1"></span></code></pre></div>
+<h3 id="functions">Functions</h3>
+
+<p>We can define a <code>function</code> to call on event like button click.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">myFunction</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;demo&#34;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&#34;Paragraph changed.&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="the-script-tag">The <code>&lt;script&gt;</code> Tag</h3>
+
+<p>In HTML, JavaScript code must be inserted between <script> and </script> tags.</p>
+
+<p>You can place any number of scripts in an HTML document.</p>
+
+<p>Scripts can be placed in the <code>&lt;body&gt;</code>, or in the <code>&lt;head&gt;</code> section of an HTML page, or in both.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"># example of inline script
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+         <span class="kd">function</span> <span class="nx">myFunction</span><span class="p">()</span> <span class="p">{</span>
+           <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;demo&#34;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&#34;Paragraph changed.&#34;</span><span class="p">;</span>
+         <span class="p">}</span>
+      <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+   
+   <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>JavaScript in Body<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;demo&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+      
+      <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+         <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;demo&#34;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&#34;My First JavaScript&#34;</span><span class="p">;</span>
+      <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+      
+      // Can refer to external javascript file
+      <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;myScript.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;myScript2.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
+<p>Or we can point to the script file</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s1">&#39;../static/myScript.js&#39;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</code></pre></div>
+<h3 id="display-data">&ldquo;display&rdquo; data</h3>
+
+<ul>
+<li><p>Writing into an HTML element, using <code>innerHTML</code></p></li>
+
+<li><p>Writing into the HTML output using <code>document.write()</code></p></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">6</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
+</code></pre></div>
+<p>Using <code>document.write()</code> after an HTML document is loaded, will delete all existing HTML</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;button&#34;</span> <span class="nx">onclick</span><span class="o">=</span><span class="s2">&#34;document.write(5 + 6)&#34;</span><span class="o">&gt;</span><span class="nx">Try</span> <span class="nx">it</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</code></pre></div>
+<ul>
+<li><p>Writing into an alert box, using <code>window.alert()</code></p></li>
+
+<li><p>Writing into the browser console, using <code>console.log()</code></p>
+
+<p>Useful for debugging</p></li>
+</ul>
+
+<h3 id="the-xmlhttprequest-object">The XMLHttpRequest Object</h3>
+
+<p>All modern browsers have a built-in XMLHttpRequest object to request data from a server.
+The XMLHttpRequest object can be used to request data from a web server.</p>
+
+<p>The XMLHttpRequest object is a developers dream, because you can:</p>
+
+<ul>
+<li>Update a web page without reloading the page</li>
+<li>Request data from a server - after the page has loaded</li>
+<li>Receive data from a server  - after the page has loaded</li>
+<li>Send data to a server - in the background</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">xhttp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+       <span class="c1">// Typical action to be performed when the document is ready:
+</span><span class="c1"></span>       <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;demo&#34;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">xhttp</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&#34;GET&#34;</span><span class="p">,</span> <span class="s2">&#34;filename&#34;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</code></pre></div>
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="https://www.w3schools.com/js/">https://www.w3schools.com/js/</a></li>
+</ul>
+
+        </div>
+    </div>
+</page_content>
+
+        </section>
+    
+
+        
+        <footer class="footer text-center">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; Nitin Patil, <time datetime="2019">2019</time></span>
+            </div>
+        </footer>
+    
+    </body>
+
+</html>

@@ -111,9 +111,7 @@
             
 
 <p><strong>Select first 5 records of table</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> 
-<span class="k">FROM</span>   <span class="n">world</span> 
-<span class="k">LIMIT</span>  <span class="mi">5</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">world</span> <span class="k">LIMIT</span> <span class="mi">5</span></code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -355,8 +353,8 @@ Using <code>WHERE</code></p>
 - <code>%</code> - The percent sign represents zero, one, or multiple characters
 - <code>_</code> - The underscore represents a single character</p>
 <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span> 
-<span class="k">FROM</span>   <span class="n">world</span>
-<span class="k">WHERE</span>  <span class="n">name</span> <span class="k">LIKE</span> <span class="p">(</span> <span class="s1">&#39;United%&#39;</span> <span class="p">)</span></code></pre></div>
+<span class="k">FROM</span>   <span class="n">world</span> 
+<span class="k">WHERE</span>  <span class="n">name</span> <span class="k">LIKE</span> <span class="p">(</span> <span class="s1">&#39;United%&#39;</span> <span class="p">)</span> </code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -396,10 +394,11 @@ Using <code>WHERE</code></p>
 </div>
 
 <p><strong>Multiple conditions</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">gdp</span> 
-<span class="k">FROM</span>   <span class="n">world</span>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> 
+       <span class="n">gdp</span> 
+<span class="k">FROM</span>   <span class="n">world</span> 
 <span class="k">WHERE</span>  <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Asia&#39;</span> 
-       <span class="k">AND</span> <span class="n">gdp</span> <span class="o">&gt;</span> <span class="mi">1875213000000</span></code></pre></div>
+       <span class="k">AND</span> <span class="n">gdp</span> <span class="o">&gt;</span> <span class="mi">1875213000000</span> </code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -451,7 +450,7 @@ Using <code>WHERE</code></p>
 <span class="k">WHERE</span>  <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Europe&#39;</span> 
        <span class="k">AND</span> <span class="n">gdp</span> <span class="o">/</span> <span class="n">population</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">gdp</span> <span class="o">/</span> <span class="n">population</span> 
                                <span class="k">FROM</span>   <span class="n">world</span> 
-                               <span class="k">WHERE</span>  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;United Kingdom&#39;</span><span class="p">)</span> </code></pre></div>
+                               <span class="k">WHERE</span>  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;United Kingdom&#39;</span><span class="p">)</span>         </code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -553,7 +552,7 @@ Using <code>WHERE</code></p>
 <span class="k">WHERE</span>  <span class="n">continent</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">continent</span> 
                      <span class="k">FROM</span>   <span class="n">world</span> 
                      <span class="k">WHERE</span>  <span class="n">name</span> <span class="k">IN</span><span class="p">(</span> <span class="s1">&#39;Argentina&#39;</span><span class="p">,</span> <span class="s1">&#39;Australia&#39;</span> <span class="p">))</span> 
-<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">name</span> </code></pre></div>
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">name</span>     </code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -722,8 +721,8 @@ Using <code>WHERE</code></p>
 <span class="k">FROM</span>   <span class="n">world</span> 
 <span class="k">WHERE</span>  <span class="n">population</span> <span class="k">BETWEEN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">population</span> 
                            <span class="k">FROM</span>   <span class="n">world</span> 
-                           <span class="k">WHERE</span>  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Canada&#39;</span><span class="p">)</span> 
-                          <span class="o">+</span> <span class="mi">1</span> <span class="k">AND</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">population</span> 
+                           <span class="k">WHERE</span>  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Canada&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+                           <span class="k">AND</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">population</span> 
                                    <span class="k">FROM</span>   <span class="n">world</span> 
                                    <span class="k">WHERE</span>  <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Poland&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> </code></pre></div>
 <p>As BETWEEN range is inclusive of boundary values, adjusted range to get desired output.</p>
@@ -773,7 +772,7 @@ Using <code>WHERE</code></p>
 <span class="k">FROM</span>   <span class="n">world</span> 
 <span class="k">WHERE</span>  <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Europe&#39;</span> 
 <span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">percetile_pop</span> <span class="k">DESC</span> 
-<span class="k">LIMIT</span>  <span class="mi">10</span></code></pre></div>
+<span class="k">LIMIT</span>  <span class="mi">10</span> </code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -857,7 +856,7 @@ Using <code>WHERE</code></p>
 <span class="k">WHERE</span>  <span class="n">gdp</span> <span class="o">&gt;</span> <span class="k">ALL</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">gdp</span> 
                   <span class="k">FROM</span>   <span class="n">world</span> 
                   <span class="k">WHERE</span>  <span class="n">continent</span> <span class="o">=</span> <span class="s1">&#39;Europe&#39;</span> 
-                         <span class="k">AND</span> <span class="n">gdp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span></code></pre></div>
+                         <span class="k">AND</span> <span class="n">gdp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> </code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1136,7 +1135,7 @@ Using <code>WHERE</code></p>
 </table>
 </div>
 
-<p>**Find the continents where all countries have a population &lt;= 25000000. Then find the names of the countries associated with these continents. Show name, continent and population. **</p>
+<p><strong>Find the continents where all countries have a population &lt;= 25000000. Then find the names of the countries associated with these continents. Show name, continent and population.</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> 
        <span class="n">continent</span><span class="p">,</span> 
        <span class="n">population</span> 

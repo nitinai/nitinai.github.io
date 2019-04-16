@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/web_dev/javascript_cheatsheet/</loc>
+    <lastmod>2019-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/web_dev/</loc>
+    <lastmod>2019-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/machine_learning/image_classification/</loc>
     <lastmod>2019-03-31T18:05:20+05:30</lastmod>
   </url>
@@ -144,7 +154,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-03-31T18:05:20+05:30</lastmod>
+    <lastmod>2019-04-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

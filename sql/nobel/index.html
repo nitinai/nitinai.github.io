@@ -1112,13 +1112,14 @@
 </div>
 
 <p>Also some of the entries are repeated as some laureates got more than one nobel prize.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">q</span> <span class="o">=</span><span class="s2">&#34;&#34;&#34;SELECT DISTINCT year, full_name, birth_date, 
-</span><span class="s2">ROUND(DATEDIFF(NOW(), birth_date)/365.25, 0) AS Age 
-</span><span class="s2">FROM nobel
-</span><span class="s2">WHERE birth_date IS NOT NULL AND death_date IS NULL
-</span><span class="s2">ORDER BY Age DESC
-</span><span class="s2">&#34;&#34;&#34;</span>
-<span class="n">ex_df</span><span class="p">(</span><span class="n">q</span><span class="p">)</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="k">year</span><span class="p">,</span> 
+                <span class="n">full_name</span><span class="p">,</span> 
+                <span class="n">birth_date</span><span class="p">,</span> 
+                <span class="n">ROUND</span><span class="p">(</span><span class="n">DATEDIFF</span><span class="p">(</span><span class="n">NOW</span><span class="p">(),</span> <span class="n">birth_date</span><span class="p">)</span><span class="o">/</span><span class="mi">365</span><span class="p">.</span><span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">AS</span> <span class="n">Age</span>
+<span class="k">FROM</span>   <span class="n">nobel</span> 
+<span class="k">WHERE</span>  <span class="n">birth_date</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span> 
+       <span class="k">AND</span> <span class="n">death_date</span> <span class="k">IS</span> <span class="k">NULL</span> 
+<span class="k">ORDER</span>  <span class="k">BY</span> <span class="n">age</span> <span class="k">DESC</span> </code></pre></div>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {

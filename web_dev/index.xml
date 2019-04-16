@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web development on Nitin Patil</title>
+    <link>/web_dev/</link>
+    <description>Recent content in Web development on Nitin Patil</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/web_dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JavaScript cheatsheet</title>
+      <link>/web_dev/javascript_cheatsheet/</link>
+      <pubDate>Tue, 16 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/web_dev/javascript_cheatsheet/</guid>
+      <description>JavaScript is the programming language of HTML and the Web.
+Why Study JavaScript? JavaScript is one of the 3 languages all web developers must learn:
+ HTML to define the content of web pages
+ CSS to specify the layout of web pages
+ JavaScript to program the behavior of web pages
+  Web pages are not the only place where JavaScript is used. Many desktop and server programs use JavaScript.</description>
+    </item>
+    
+  </channel>
+</rss>
