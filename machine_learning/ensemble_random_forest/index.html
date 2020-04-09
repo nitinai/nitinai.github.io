@@ -139,7 +139,7 @@ base estimators are built sequentially and one tries to reduce the bias of the c
 
 <p>In bagging we build several instances of black-box estimator on random subsets of training data and then aggregate their idividual predictions to form a final prediction.</p>
 
-<p>As bagging provide a way to reduce overfitting (variance), by introducing randomization while base model creation, bagging methods works best with strong and complex models like fully developed decision trees. In contrast boosting methods usually works best with weak models like shallow decision trees.</p>
+<p>As bagging provide a way to reduce overfitting (variance), by introducing randomization while base model creation, bagging methods works best with strong and complex models like fully developed <a href="/machine_learning/decision_tree_algorithm/">decision trees</a>. In contrast boosting methods usually works best with weak models like shallow decision trees.</p>
 
 <p>The efficiency of bagging comes from the fact that the individual models are quite different due to the different training data and their errors cancel each other out during voting. Additionally, outliers are likely omitted in some of the training bootstrap samples.</p>
 
@@ -174,7 +174,7 @@ base estimators are built sequentially and one tries to reduce the bias of the c
 <span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span></code></pre></div>
 <h2 id="random-forest">Random forest</h2>
 
-<p>A random forest bags number of decision trees. Sub-samples are drawn with replacement keeping their size same as the original input sample size. Sub-samples have random subset of features.</p>
+<p>A random forest bags number of <a href="/machine_learning/decision_tree_algorithm/">decision trees</a>. Sub-samples are drawn with replacement keeping their size same as the original input sample size. Sub-samples have random subset of features.</p>
 
 <p>As a result of this randomness, the bias of the forest usually slightly increases (with respect to the bias of a single non-random tree) but, due to averaging, its variance also decreases, usually more than compensating for the increase in bias, hence yielding an overall better model.</p>
 
