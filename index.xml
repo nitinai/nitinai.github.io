@@ -260,7 +260,10 @@ git status Ignore from commit Add entries of files you want to exclude from comm
       <pubDate>Tue, 01 Jan 2019 11:53:49 -0700</pubDate>
       
       <guid>/projects/projects/</guid>
-      <description>ml-learn This project contains bare minimum implementation of different machine learning algorithms. The main purpose of this project is to understand mechanics of these algorthms.</description>
+      <description>Coronavirus disease (COVID-19) Pandemic Dashboard The Coronavirus disease (COVID-19) Pandemic dashboard provides latest information about the COVID-19 outbreak across the World. Stay at home, maintain healthy habits to contain the Coronavirus
+
+
+Machine Learning Algorithms library ml-learn This project contains bare minimum implementation of different machine learning algorithms. The main purpose of this project is to understand mechanics of these algorthms.</description>
     </item>
     
   </channel>
