@@ -299,7 +299,7 @@ About
 img{
     max-width: 70%;
     height: 70%;
-    width: 70%;  /*ie8 */
+    /*width: 70%;  ie8 */
     display:block;
     margin-left: auto;
     margin-right: auto;
